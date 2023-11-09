@@ -33,9 +33,9 @@ public class PassageEntity {
     @Column(name = "name")
     private String name;
     @Column(name = "resourceid")
-    private BigInteger resourceId;
+    private Long resourceId;
     @Column(name = "productid")
-    private BigInteger productId;
+    private Long productId;
     @Column(name = "scramble")
     private boolean scramble;
 

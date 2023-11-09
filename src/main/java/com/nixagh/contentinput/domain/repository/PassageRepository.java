@@ -23,7 +23,7 @@ public interface PassageRepository extends JpaRepository<PassageEntity, Long> {
             "and p.resourceId = :resourceId" +
             ")"
     )
-    List<PassageEntity> getPassageByQuestionNumberAndResourceId(int questionNumber, BigInteger resourceId);
+    List<PassageEntity> getPassageByQuestionNumberAndResourceId(int questionNumber, Long resourceId);
 
     // get lass passageNumber
     @Query(value = "select max(p.passageNumber) from PassageEntity p")

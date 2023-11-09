@@ -161,8 +161,8 @@ public class RunProcess {
         var description = resourceCode.get("description", String.class);
         log.info("Run process for resource code: {}, description: {}", resourceCode.get("resourcecode", String.class), description);
         var type = resourceCode.get("adaptiveresourcetype", String.class);
-        var productId = resourceCode.get("productid", BigInteger.class);
-        var resourceId = resourceCode.get("resourceid", BigInteger.class);
+        var productId = resourceCode.get("productid", Long.class);
+        var resourceId = resourceCode.get("resourceid", Long.class);
         var _resourceCode = resourceCode.get("resourcecode", String.class);
 
         var key = description + "-" + type;

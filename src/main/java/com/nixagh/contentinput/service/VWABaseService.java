@@ -51,8 +51,8 @@ public class VWABaseService {
     protected Integer questionTypeId = 49;
 
     protected String path;
-    protected BigInteger productId;
-    protected BigInteger resourceId;
+    protected Long productId;
+    protected Long resourceId;
     protected String resourceCode;
     protected String productCode;
     protected int unit;
@@ -76,20 +76,20 @@ public class VWABaseService {
         this.wordListSheets = this.excelReader.getExcelFile(this.path, this.wordListSheetName, WordListSheet.class);
     }
 
-    public BigInteger getProductId() {
+    public Long getProductId() {
         if (this.productId == null) {
             var query = this.entityManager.createNativeQuery("SELECT productid FROM product WHERE code = ?");
             query.setParameter(1, this.productCode);
-            this.productId = (BigInteger) query.getSingleResult();
+            this.productId = (Long) query.getSingleResult();
         }
         return this.productId;
     }
 
-    public BigInteger getResourceId() {
+    public Long getResourceId() {
         if (this.resourceId == null) {
             var query = this.entityManager.createNativeQuery("SELECT resourceid FROM resource WHERE resourcecode = ?");
             query.setParameter(1, this.resourceCode);
-            this.resourceId = (BigInteger) query.getSingleResult();
+            this.resourceId = (Long) query.getSingleResult();
         }
         return this.resourceId;
     }

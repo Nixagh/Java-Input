@@ -190,10 +190,10 @@ public class QuestionEntity {
     private String adaptivequestionxml;
 
     @Column(name = "pathwayset1")
-    private Integer pathwayset1;
+    private String pathwayset1;
 
     @Column(name = "pathwayset2")
-    private Integer pathwayset2;
+    private String pathwayset2;
 
     @Column(name = "settype")
     private String settype;
@@ -209,5 +209,8 @@ public class QuestionEntity {
 
     @Column(name = "correctanswertexthtml_bk")
     private String correctanswertexthtml_bk;
+
+    @Column(name = "autoscorete")
+    private Boolean autoscorete = false;
 
 }
