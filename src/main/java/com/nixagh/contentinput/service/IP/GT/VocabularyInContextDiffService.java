@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.service.GT;
+package com.nixagh.contentinput.service.IP.GT;
 
 import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;

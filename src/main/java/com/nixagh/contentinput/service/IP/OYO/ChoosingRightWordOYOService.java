@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.service.OYO;
+package com.nixagh.contentinput.service.IP.OYO;
 
 import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;

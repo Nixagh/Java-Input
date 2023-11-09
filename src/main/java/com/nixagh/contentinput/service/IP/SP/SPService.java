@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.service.SP;
+package com.nixagh.contentinput.service.IP.SP;
 
 import com.nixagh.contentinput.modal.excel.SP.DefinitionSheet;
 import com.nixagh.contentinput.modal.excel.SP.VisualSheet;

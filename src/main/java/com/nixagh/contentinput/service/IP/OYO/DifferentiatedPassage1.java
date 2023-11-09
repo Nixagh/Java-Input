@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.service.OYO;
+package com.nixagh.contentinput.service.IP.OYO;
 
 import com.nixagh.contentinput.common.enums.VWAEnums;
 import com.nixagh.contentinput.modal.excel.OYO.DifferentiatedPassageSheet;
