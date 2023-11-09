@@ -32,111 +32,182 @@ public class QuestionEntity {
     // help me gen all field
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "questionid")
     private Long questionid;
+
+    @Column(name = "questionuid")
     private String questionuid;
+
+    @Column(name = "questionxml")
     private String questionxml;
+
+    @Column(name = "maxscore")
     private Integer maxscore = 1;
+
+    @Column(name = "correctanswer")
     private String correctanswer;
+
     @Column(name = "passageid")
     private Long passageid;
-    private BigInteger resourceid;
-    private BigInteger productid;
+
+    @Column(name = "resourceid")
+    private Long resourceid;
+
+    @Column(name = "productid")
+    private Long productid;
+
+    @Column(name = "questionnumber")
     private Integer questionnumber;
+
+    @Column(name = "questiontypeid")
     private Integer questiontypeid;
-    private String rendertype = null;
-    private String labelschema = "AL";
+
+    @Column(name = "standards")
     private String standards;
+
+    @Column(name = "scramble")
     private boolean scramble;
-    private String rubric = "";
+
+    @Column(name = "hidequestionlabel")
     private boolean hidequestionlabel = false;
-    private String epilog = null;
-    private String hint = null;
+
+
+    @Column(name = "linktoquestion")
     private Integer linktoquestion;
-    private String correctanswertexthtml;
-    private Integer programtoc;
+
+    @Column(name = "correctanswertexthtml")
+    private String correctanswertexthtml;;
+
+    @Column(name = "programtoc")
+    private Integer programtocid;
+
+    @Column(name = "title")
     private String title = null;
+
+    @Column(name = "action")
     private String action = null;
-    private String problemsolution = "";
-    private String rubricrules = "";
+
+    @Column(name = "word")
     private String word = "";
+
+    @Column(name = "rubricid")
     private Integer rubricid;
+
+    @Column(name = "rubrictitle")
     private String rubrictitle = "";
+
+    @Column(name = "hideoptionlabel")
     private boolean hideoptionlabel = false;
+
+    @Column(name = "scrambleoption")
     private boolean scrambleoption = false;
-    private String writeonlines = "";
+
+    @Column(name = "originalitemid")
     private Integer originalitemid ;
-    private String webdok;
-    private boolean correctasis = false;
+
+    @Column(name = "questionnumcssstyle")
     private String questionnumcssstyle = "";
+
+    @Column(name = "questionnumcssclass")
     private String questionnumcssclass = "";
+
+    @Column(name = "createddate")
     private Timestamp createddate = new Timestamp(System.currentTimeMillis());
+
+    @Column(name = "modifieddate")
     private Timestamp modifieddate;
+
+    @Column(name = "algorithym")
     private String algorithym;
+
+    @Column(name = "renderrule")
     private String renderrule;
+
+    @Column(name = "definitionword")
     private String definitionword;
+
+    @Column(name = "connotation")
     private String connotation;
+
+    @Column(name = "reportingrule")
     private String reportingrule;
+
+    @Column(name = "hidelabelrule")
     private boolean hidelabelrule;
+
+    @Column(name = "questionxmltemp")
     private String questionxmltemp;
-    private boolean converttomc4print;
+
+    @Column(name = "correctanswerprint")
     private String rendertype4print = "D";
-    private String correctanswer4print;
-    private String wordmeaning;
-    private String labelschemacustom;
-    private String xmlcontent2017;
-    private String scoringformula;
-    private Integer screenid;
-    private Integer screenelementid;
-    private String componentgradingrules;
-    private boolean autoscorete;
-    private String questionxmlprint;
-    private String correctanswerprint;
-    private String correctanswertexthtmlprint;
+
+    @Column(name = "correctanswer4printtext")
     private String correctanswer4printtext;
+
+    @Column(name = "correctanswer4print")
+    private String correctanswer4print;
+
+    @Column(name = "collaboration")
     private String collaboration;
+
+    @Column(name = "wordmapcontent")
     private String wordmapcontent;
+
+    @Column(name = "wordmapuri")
     private String wordmapuri;
+
+    @Column(name = "feedback")
     private String feedback;
+
+    @Column(name = "questiontext")
     private String questiontext;
+
+    @Column(name = "ans1")
     private String ans1;
+
+    @Column(name = "ans2")
     private String ans2;
+
+    @Column(name = "ans3")
     private String ans3;
+
+    @Column(name = "ans4")
     private String ans4;
+
+    @Column(name = "ans5")
     private String ans5;
+
+    @Column(name = "disabled")
     private boolean disabled;
+
+    @Column(name = "wordid")
     private String wordid;
+
+    @Column(name = "adaptivefeedback")
     private String adaptivefeedback;
+
+    @Column(name = "adaptivequestionxml")
     private String adaptivequestionxml;
-    private String pathwayset1;
-    private String pathwayset2;
+
+    @Column(name = "pathwayset1")
+    private Integer pathwayset1;
+
+    @Column(name = "pathwayset2")
+    private Integer pathwayset2;
+
+    @Column(name = "settype")
     private String settype;
+
+    @Column(name = "adaptiveanswercount")
     private Integer adaptiveanswercount;
+
+    @Column(name = "questionxml_backup")
     private String questionxml_backup;
+
+    @Column(name = "correctanswer_bk")
     private String correctanswer_bk;
 
-    public String generateInsertValue() {
-        // loop all field
-        Field[] fields = this.getClass().getDeclaredFields();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("(");
-        for (Integer i = 0; i < fields.length; i++) {
-            try {
-                // if field name equal questionid, skip
-                if (fields[i].getName().equals("questionid")) {
-                    continue;
-                }
+    @Column(name = "correctanswertexthtml_bk")
+    private String correctanswertexthtml_bk;
 
-                stringBuilder.append("\"");
-                stringBuilder.append(fields[i].get(this));
-                stringBuilder.append("\"");
-                if (i < fields.length - 1) {
-                    stringBuilder.append(",");
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        stringBuilder.append(")");
-        return stringBuilder.toString();
-    }
 }
