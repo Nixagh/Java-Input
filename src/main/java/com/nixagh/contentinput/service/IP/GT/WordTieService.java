@@ -1,6 +1,7 @@
 package com.nixagh.contentinput.service.IP.GT;
 
 import com.nixagh.contentinput.common.enums.VWAEnums;
+import com.nixagh.contentinput.domain.dto.feedback.AdaptiveFeedbackDTO;
 import com.nixagh.contentinput.modal.PassageTab;
 import com.nixagh.contentinput.modal.excel.GT.WordTieSheet;
 import com.nixagh.contentinput.repository.PassageRepository;
@@ -27,6 +28,8 @@ public class WordTieService extends VWABaseService {
     private List<WordTieSheet> wordTieSheets;
     private String wordTieSheetName = "WordTies";
     private Long[] currentPassageIds = new Long[1];
+
+    private String QuestionContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/wordTies/WordTieQuestionContent.vm";
 
     public WordTieService(ExcelReader excelReader, QuestionRepository questionRepository, PassageRepository passageRepository, EntityManager entityManager) {
         super(excelReader, questionRepository, passageRepository, entityManager);
@@ -96,7 +99,7 @@ public class WordTieService extends VWABaseService {
             "options", this.getOptions(answerChoices, questionNumber)
         );
 
-        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/wordTies/WordTieQuestionContent.vm", map);
+        return this.convertFromVMFile(QuestionContentVMpath, map);
     }
 
     private String getOptions(String answerChoices, int questionNumber) {
@@ -151,11 +154,11 @@ public class WordTieService extends VWABaseService {
     }
 
     private String buildFeedbackTab(WordTieSheet wordTieSheet) {
-        var correctFeedback = this.toListOfString("");
-        var incorrectFeedback1 = this.toListOfString(this.convertAtFeedBack(wordTieSheet.getIncorrectFeedback1()));
-        var incorrectFeedback2 = this.toListOfString(this.convertAtFeedBack(wordTieSheet.getIncorrectFeedback2()));
-        var incorrectFeedback3 = this.toListOfString(this.convertAtFeedBack(wordTieSheet.getIncorrectFeedback3()));
-        var incorrectFeedback4 = this.toListOfString(this.convertAtFeedBack(wordTieSheet.getIncorrectFeedback4()));
+        var correctFeedback = List.of("");
+        var incorrectFeedback1 = this.convertAtFeedBack(wordTieSheet.getIncorrectFeedback1());
+        var incorrectFeedback2 = this.convertAtFeedBack(wordTieSheet.getIncorrectFeedback2());
+        var incorrectFeedback3 = this.convertAtFeedBack(wordTieSheet.getIncorrectFeedback3());
+        var incorrectFeedback4 = this.convertAtFeedBack(wordTieSheet.getIncorrectFeedback4());
 
         var correctEmoji = wordTieSheet.getCorrectEmoji();
         var incorrectEmoji1 = wordTieSheet.getIncorrectEmoji1();
@@ -163,10 +166,18 @@ public class WordTieService extends VWABaseService {
         var incorrectEmoji3 = wordTieSheet.getIncorrectEmoji3();
         var incorrectEmoji4 = wordTieSheet.getIncorrectEmoji4();
 
-        return String.format("{\"correctFeedback\": %s, \"incorrectFeedback1\": %s, \"incorrectFeedback2\": %s, \"incorrectFeedback3\": %s, \"incorrectFeedback4\": %s, \"correctEmoji\": %s, \"incorrectEmoji1\": %s, \"incorrectEmoji2\": %s, \"incorrectEmoji3\": %s, \"incorrectEmoji4\": %s}", correctFeedback, incorrectFeedback1, incorrectFeedback2, incorrectFeedback3, incorrectFeedback4, correctEmoji, incorrectEmoji1, incorrectEmoji2, incorrectEmoji3, incorrectEmoji4);
-    }
-
-    private String toListOfString(String str) {
-        return String.format("[\"%s\"]", str);
+        return AdaptiveFeedbackDTO.builder()
+            .correctFeedback(correctFeedback)
+            .incorrectFeedback1(List.of(incorrectFeedback1))
+            .incorrectFeedback2(List.of(incorrectFeedback2))
+            .incorrectFeedback3(List.of(incorrectFeedback3))
+            .incorrectFeedback4(List.of(incorrectFeedback4))
+            .correctEmoji(correctEmoji)
+            .incorrectEmoji1(incorrectEmoji1)
+            .incorrectEmoji2(incorrectEmoji2)
+            .incorrectEmoji3(incorrectEmoji3)
+            .incorrectEmoji4(incorrectEmoji4)
+            .build()
+            .convert2Json();
     }
 }

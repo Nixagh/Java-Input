@@ -5,6 +5,8 @@ import com.poiji.annotation.ExcelSheet;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author nghia.nguyen-dinh
  * @since 11/7/2023 at 1:52 PM
@@ -36,7 +38,8 @@ public class WordTieSheet {
     @ExcelCellName("Correct Answers")
     private String correctAnswers;
     @ExcelCellName("Correct emoji with feedback phrases randomly selected.")
-    private String correctEmoji = "[\"Way to go!\",\"Great job!\",\"You did it!\",\"Terrific!\"]";
+//    "[\"Way to go!\",\"Great job!\",\"You did it!\",\"Terrific!\"]";
+    private List<String> correctEmoji = List.of("Way to go!", "Great job!", "You did it!", "Terrific!");
 
     @ExcelCellName("Incorrect Feedback 1")
     private String incorrectFeedback1;
@@ -47,10 +50,11 @@ public class WordTieSheet {
     @ExcelCellName("Final incorrect feedback for students who had a second try.")
     private String incorrectFeedback4;
 
-    private String incorrectEmoji1 = "[\"Nice try!\"]";
-    private String incorrectEmoji2 = "[\"You can do this!\",\"Keep practicing.\",\"Keep trying.\",\"Nice try!\",\"Try another way.\"]";
-    private String incorrectEmoji3 = "[\"You can do this!\",\"Keep practicing.\",\"Keep trying.\",\"Nice try!\",\"Try another way.\"]";
-    private String incorrectEmoji4 = "[\"Nice try!\"]";
+    private List<String> incorrectEmoji1 = List.of("Nice try!");
+    //"[\"You can do this!\",\"Keep practicing.\",\"Keep trying.\",\"Nice try!\",\"Try another way.\"]";
+    private List<String> incorrectEmoji2 = List.of("You can do this!", "Keep practicing.", "Keep trying.", "Nice try!", "Try another way.");
+    private List<String> incorrectEmoji3 = List.of("You can do this!", "Keep practicing.", "Keep trying.", "Nice try!", "Try another way.");
+    private List<String> incorrectEmoji4 = List.of("Nice try!");
     @ExcelCellName("Standard")
     private String standard;
     @ExcelCellName("Points")

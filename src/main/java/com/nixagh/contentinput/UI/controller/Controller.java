@@ -1,5 +1,7 @@
 package com.nixagh.contentinput.UI.controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import org.springframework.stereotype.Component;
 
 /**

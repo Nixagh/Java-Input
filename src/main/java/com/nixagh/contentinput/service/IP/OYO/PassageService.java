@@ -31,6 +31,10 @@ public class PassageService extends VWABaseService {
     private final String passageSheetName = "OnLevelPsg";
     private Long[] currentPassageIds = new Long[1];
 
+    private String questionContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/passage/QuestionContent.vm";
+    private String passageContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/passage/PassageContent.vm";
+    private String passageSummaryVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/passage/PassageSummary.vm";
+
     public PassageService(ExcelReader excelReader, QuestionRepository questionRepository, PassageRepository passageRepository, EntityManager entityManager) {
         super(excelReader, questionRepository, passageRepository, entityManager);
     }
@@ -151,7 +155,7 @@ public class PassageService extends VWABaseService {
     private String buildPassageContent(String content) {
         Map<String, Object> map = Map.of("title", this.getPassageTitle(content), "body", this.passageBodyConvert(content), "productCode", this.getProductCode());
 
-        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/passage/PassageContent.vm", map);
+        return this.convertFromVMFile(this.passageContentVMpath, map);
     }
 
     private String getPassageTitle(String content) {
@@ -177,7 +181,7 @@ public class PassageService extends VWABaseService {
 
         Map<String, Object> map = Map.of("title", title, "description", description, "image", image);
 
-        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/passage/PassageSummary.vm", map);
+        return this.convertFromVMFile(this.passageSummaryVMpath, map);
     }
 
     private String buildQuestionContent(String item, String itemChoices, int questionNumber) {
@@ -187,7 +191,7 @@ public class PassageService extends VWABaseService {
         map.put("cid", this.getCID(questionNumber));
         map.put("options", this.getOptions(itemChoices, questionNumber));
 
-        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/passage/QuestionContent.vm", map);
+        return this.convertFromVMFile(this.questionContentVMpath, map);
     }
 
     private String getOptions(String itemChoices, int questionNumber) {

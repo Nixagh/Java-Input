@@ -285,7 +285,7 @@ public class VWABaseService {
         question.setFeedback(feedback);
     }
 
-    protected String addByVM(String template, Map<String, Object> map) {
+    protected String convertFromVMFile(String template, Map<String, Object> map) {
         var context = new VelocityContext(map);
         var writer = new StringWriter();
         var _template = this.velocityEngine.getTemplate(template);
@@ -296,7 +296,7 @@ public class VWABaseService {
 
     private String getQuestionXML(String questionContent) {
         Map<String, Object> map = Map.of("questionContent", questionContent);
-        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/QuestionXML.vm", map)
+        return this.convertFromVMFile("src/main/java/com/nixagh/contentinput/libs/Vm/QuestionXML.vm", map)
             .replaceAll("\n", "")
             .replaceAll("\r", "")
             .replaceAll("\t", "")

@@ -21,6 +21,8 @@ import java.util.stream.IntStream;
 @Getter
 @Setter
 public class WordStudyService extends SPService {
+    private String questionContentVMPath = "src/main/java/com/nixagh/contentinput/libs/Vm/wordStudy/QuestionContent.vm"
+
     public Integer getAdaptiveAnswerCount() {
         return VWAEnums.WordStudy.getAdaptiveAnswerCount();
     }
@@ -86,7 +88,7 @@ public class WordStudyService extends SPService {
         map.put("questionNumber", questionNumber);
         map.put("cid", this.getCID(questionNumber));
         
-        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/wordStudy/QuestionContent.vm", map);
+        return this.convertFromVMFile(this.questionContentVMPath, map);
     }
 
     private String getInflectedFormsHTML(String inflectedForm) {
