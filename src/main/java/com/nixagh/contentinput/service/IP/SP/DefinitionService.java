@@ -19,6 +19,8 @@ import java.util.stream.IntStream;
 @Getter
 @Setter
 public class DefinitionService extends SPService {
+    private String questionContentVMPath = "src/main/java/com/nixagh/contentinput/libs/Vm/definition/QuestionContent.vm";
+
     public Integer getAdaptiveAnswerCount() {
         return VWAEnums.Definitions.getAdaptiveAnswerCount();
     }
@@ -63,7 +65,7 @@ public class DefinitionService extends SPService {
             "questionHTMl", questionHTMl
         );
 
-        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/definition/QuestionContent.vm", map);
+        return this.convertFromVMFile(this.questionContentVMPath, map);
     }
 
     public String getInflectedFormsHTML(String inflectedForms) {

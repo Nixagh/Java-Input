@@ -2,11 +2,20 @@ package com.nixagh.contentinput.domain.dto.feedback;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class AdaptiveFeedbackDTO implements Serializable {
 
     private List<String> correctFeedback;
@@ -31,4 +40,18 @@ public class AdaptiveFeedbackDTO implements Serializable {
     //On your own
     private List<String> incorrectFeedback;
     private List<String> incorrectEmoji;
+
+    // to json
+    public String convert2Json() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            // but if field is null, it will not be included in json string
+            return mapper.writeValueAsString(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error when convert to json");
+            return "";
+        }
+    }
 }
