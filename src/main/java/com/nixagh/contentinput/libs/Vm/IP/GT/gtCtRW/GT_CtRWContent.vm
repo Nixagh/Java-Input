@@ -1,0 +1,11 @@
+<div class="question-questionStem question-questionStem-1-column">
+  <div class="question-stem-content">
+    <div class="question">${item1}
+      <div cid="${cid}" ctype="Drop_Down" qname="a${questionNumber}">
+        <div subid="options">
+            ${options}
+        </div>
+      </div>
+      ${item2}</div>
+  </div>
+</div>
