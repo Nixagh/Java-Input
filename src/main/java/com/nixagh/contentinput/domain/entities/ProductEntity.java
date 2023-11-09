@@ -29,7 +29,7 @@ public class ProductEntity {
     private String name;
 
     @Column(name = "programid")
-    private Integer programid;
+    private Long programid;
 
     @Column(name = "subjectid")
     private Integer subjectid;
