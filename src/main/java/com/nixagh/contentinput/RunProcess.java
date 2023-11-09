@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
+import com.nixagh.contentinput.repository.ResourceRepository;
 import com.nixagh.contentinput.service.GT.ChoosingRightWordGTService;
 import com.nixagh.contentinput.service.GT.ExampleService;
 import com.nixagh.contentinput.service.GT.VocabularyInContextDiffService;
@@ -49,6 +50,7 @@ public class RunProcess {
     private final EntityManager entityManager;
     private final QuestionRepository questionRepository;
     private final PassageRepository passageRepository;
+    private final ResourceRepository resourceRepository;
     private final ExcelReader excelReader;
     private final ObjectMapper objectMapper;
 
@@ -117,7 +119,7 @@ public class RunProcess {
     }
 
     private List<Tuple> getResourceCodes(Integer unit, String type) {
-        var query = entityManager.createNativeQuery(String.format("" +
+        var query = entityManager.createNativeQuery(String.format(
             "select r.resourcecode, r.resourceid , r.description , p.productid , r.adaptiveresourcetype " +
             "from resource r " +
             "join product p on p.productid =r.productid " +
@@ -159,7 +161,7 @@ public class RunProcess {
     private void runUnit(String unit, String categoryName) {
         var unitNumber = this.getUnitNumber(unit);
         // get all resource code by product code and unit
-        var resourceCodes = this.getResourceCodes(unitNumber, categoryName);
+        var resourceCodes = this.resourceRepository.getResourceCodes(this.getProductCode(), "Unit " + unitNumber, categoryName);
         log.info("Run process for unit: {}", unitNumber);
         // run all resource code
         resourceCodes.forEach(resourceCode -> this.runResourceCode(resourceCode, unit, unitNumber));

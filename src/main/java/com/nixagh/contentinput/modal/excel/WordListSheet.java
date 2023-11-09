@@ -34,7 +34,7 @@ public class WordListSheet {
     private String pronunciation;
     @ExcelCellName("Part of Speech")
     private String partOfSpeech;
-    @ExcelCellName("Feedback Rollover DefinitionSheet")
+    @ExcelCellName("Feedback Rollover Definition")
     private String feedbackRolloverDefinition;
     @ExcelCellName("Synonyms")
     private String synonyms;
