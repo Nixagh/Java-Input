@@ -5,7 +5,7 @@ import com.nixagh.contentinput.modal.excel.SP.WordStudySheet;
 import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.util.ExcelReader;
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
 import lombok.Getter;
 import lombok.Setter;
 

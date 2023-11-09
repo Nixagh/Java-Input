@@ -1,6 +1,7 @@
 package com.nixagh.contentinput.modal.excel.SP;
 
 import com.poiji.annotation.ExcelCellName;
+import com.poiji.annotation.ExcelSheet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ExcelSheet("Definitions")
 public class DefinitionSheet {
     //     Step	Item Type 	WordID	 Word	Pronunciation	Part of Speech	Inflected Forms Direction Line 	Inflected Forms	Definition 	Example Sentence	Synonyms	Antonyms	Correct Answer(s)	Check Your Spelling Flash Feedback	Word Journal Prompt Definitions	Instructional Video Pickup Code VWS22	Video Word Journal Prompt	Standard
     // help me gen all field

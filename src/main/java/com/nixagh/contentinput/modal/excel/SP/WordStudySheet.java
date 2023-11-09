@@ -1,6 +1,7 @@
 package com.nixagh.contentinput.modal.excel.SP;
 
 import com.poiji.annotation.ExcelCellName;
+import com.poiji.annotation.ExcelSheet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ExcelSheet("WordStudy")
 public class WordStudySheet {
     //Step 	Word ID	Multiple Meaning	Word	Pronunciation	Part of Speech	Inflected Form	Characteristic Image	Prefix	Root or Base	Suffix	Introduction	Sample Sentence 1	Sample Sentence 1 Explanation	Image Details	Sample Sentence 2	Sample Sentence 2 Explanation	Image Details	Word Journal Prompt	Standard
     @ExcelCellName("Step")

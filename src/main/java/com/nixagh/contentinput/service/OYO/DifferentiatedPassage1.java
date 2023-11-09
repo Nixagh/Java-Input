@@ -6,7 +6,7 @@ import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
 
 /**
  * @author nghia.nguyen-dinh

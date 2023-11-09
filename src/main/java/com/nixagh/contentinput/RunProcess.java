@@ -21,14 +21,15 @@ import com.nixagh.contentinput.service.SP.VisualService;
 import com.nixagh.contentinput.service.SP.WordStudyService;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Tuple;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Tuple;
 import java.io.File;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -149,6 +150,7 @@ public class RunProcess {
             .map(unit -> folder + "\\" + category + "\\" + unit)
             .filter(unit -> !unit.contains("~$VWA_"))
             .forEach(unit -> this.runUnit(unit, this.typeMap.get(categoryName)));
+        System.out.println("\n\n\n");
         log.info("====================================================");
     }
 
@@ -165,8 +167,8 @@ public class RunProcess {
         var description = resourceCode.get("description", String.class);
         log.info("Run process for resource code: {}, description: {}", resourceCode.get("resourcecode", String.class), description);
         var type = resourceCode.get("adaptiveresourcetype", String.class);
-        var productId = resourceCode.get("productid", Long.class);
-        var resourceId = resourceCode.get("resourceid", Long.class);
+        var productId = resourceCode.get("productid", BigInteger.class);
+        var resourceId = resourceCode.get("resourceid", BigInteger.class);
         var _resourceCode = resourceCode.get("resourcecode", String.class);
 
         var key = description + "-" + type;

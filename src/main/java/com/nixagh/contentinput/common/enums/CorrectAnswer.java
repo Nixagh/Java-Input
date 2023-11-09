@@ -1,5 +1,9 @@
 package com.nixagh.contentinput.common.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,5 +31,12 @@ public class CorrectAnswer {
         compMap.put("InstructionVideo", new Comp("Video", null));
         compMap.put("wordstudy", new Comp("View", null));
     }
-    public record Comp(String type, String subType){}
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class Comp {
+        private String type;
+        private String subtype;
+    }
 }

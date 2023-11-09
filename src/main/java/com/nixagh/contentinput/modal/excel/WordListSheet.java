@@ -2,6 +2,7 @@ package com.nixagh.contentinput.modal.excel;
 
 import com.nixagh.contentinput.common.excelFomat.WordListSheetFormat;
 import com.poiji.annotation.ExcelCellName;
+import com.poiji.annotation.ExcelSheet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ExcelSheet("wordList")
 public class WordListSheet {
     @ExcelCellName("WordID")
     private String wordID;

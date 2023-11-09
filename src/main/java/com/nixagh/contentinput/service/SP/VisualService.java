@@ -5,7 +5,7 @@ import com.nixagh.contentinput.modal.excel.SP.DefinitionSheet;
 import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.util.ExcelReader;
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
 
 import java.util.stream.IntStream;
 

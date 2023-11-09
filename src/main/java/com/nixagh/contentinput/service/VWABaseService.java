@@ -10,13 +10,14 @@ import com.nixagh.contentinput.modal.excel.WordListSheet;
 import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.util.ExcelReader;
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,8 +48,8 @@ public class VWABaseService {
     protected Integer questionTypeId = 49;
 
     protected String path;
-    protected Long productId;
-    protected Long resourceId;
+    protected BigInteger productId;
+    protected BigInteger resourceId;
     protected String resourceCode;
     protected String productCode;
     protected int unit;
@@ -70,20 +71,20 @@ public class VWABaseService {
         this.wordListSheets = this.excelReader.getExcelFile(this.path, this.wordListSheetName, WordListSheet.class);
     }
 
-    public Long getProductId() {
+    public BigInteger getProductId() {
         if (this.productId == null) {
             var query = this.entityManager.createNativeQuery("SELECT productid FROM product WHERE code = ?");
             query.setParameter(1, this.productCode);
-            this.productId = (Long) query.getSingleResult();
+            this.productId = (BigInteger) query.getSingleResult();
         }
         return this.productId;
     }
 
-    public Long getResourceId() {
+    public BigInteger getResourceId() {
         if (this.resourceId == null) {
             var query = this.entityManager.createNativeQuery("SELECT resourceid FROM resource WHERE resourcecode = ?");
             query.setParameter(1, this.resourceCode);
-            this.resourceId = (Long) query.getSingleResult();
+            this.resourceId = (BigInteger) query.getSingleResult();
         }
         return this.resourceId;
     }
@@ -326,7 +327,7 @@ public class VWABaseService {
         questionContentTab.setContent(content);
 
         var comp = CorrectAnswer.compMap.get(this.getType());
-        questionContentTab.setCorrectAnswer(this.getCID(questionNumber), correctAnswer, comp.type(), comp.subType());
+        questionContentTab.setCorrectAnswer(this.getCID(questionNumber), correctAnswer, comp.getType(), comp.getSubtype());
         questionContentTab.setCorrectAnswerTextHtml(correctAnswer);
 
         return questionContentTab;

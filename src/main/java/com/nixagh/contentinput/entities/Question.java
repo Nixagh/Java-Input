@@ -1,11 +1,11 @@
 package com.nixagh.contentinput.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.lang.reflect.Field;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 /**
@@ -38,8 +39,8 @@ public class Question {
     private String correctanswer;
     @Column(name = "passageid")
     private Long passageid;
-    private Long resourceid;
-    private Long productid;
+    private BigInteger resourceid;
+    private BigInteger productid;
     private Integer questionnumber;
     private Integer questiontypeid;
     private String rendertype = null;

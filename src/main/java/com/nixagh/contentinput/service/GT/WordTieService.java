@@ -9,7 +9,11 @@ import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
-import jakarta.persistence.EntityManager;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.EntityManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -119,7 +123,13 @@ public class WordTieService extends VWABaseService {
             .map(option -> option.id)
             .collect(Collectors.joining(","));
     }
-    private record Option(String id, String content) {}
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    private static class Option {
+        String id;
+        String content;
+    }
     private List<Option> getChoices(String answerChoices, int questionNumber) {
         var options = answerChoices.split("; |;");
         if (options.length != 4) {
@@ -127,7 +137,7 @@ public class WordTieService extends VWABaseService {
         }
         return IntStream.range(0, options.length)
             .mapToObj(i -> new Option((char) ('a' + i) + "", options[i].trim()))
-            .toList();
+            .collect(Collectors.toList());
     }
 
     private PassageTab buildPassageTab(WordTieSheet wordTieSheet, int questionNumber) {

@@ -11,7 +11,9 @@ import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.service.GT.WordTieService;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -215,25 +217,30 @@ public class PassageService extends VWABaseService {
             <div itemid="%s" itemlabel="">%s</div>""".formatted(option.id, option.content);
     }
 
-    private record Option(String id, String content) {
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    private static class Option {
+        String id;
+        String content;
     }
 
     private List<Option> getChoices(String itemChoices, int questionNumber) {
-        var options = itemChoices.split("(; |;)[abcd].( |)");
+        var options = itemChoices.split("(; |;)[abcd]\\.( |)");
         if (options.length != 4) {
             this.addError("answerChoices", "answerChoices must have 4 options at question number: " + questionNumber);
         }
         return IntStream.range(0, options.length)
-            .mapToObj(i -> new PassageService.Option((char) ('a' + i) + "", options[i].trim().replaceAll("[abcd]. ", "").trim()))
-            .toList();
+            .mapToObj(i -> new Option((char) ('a' + i) + "", options[i].trim().replaceAll("[abcd]\\. ", "").trim()))
+            .collect(Collectors.toList());
     }
 
     private String buildCorrectAnswer(String itemChoices, String correctAnswers, int questionNumber) {
         var choices = this.getChoices(itemChoices, questionNumber);
-        var _correctAnswers = correctAnswers.replaceAll("[abcd]. ", "");
+        var _correctAnswers = correctAnswers.replaceAll("[abcd]\\. ", "");
         return choices.stream()
             .filter(choice -> choice.content.equals(_correctAnswers))
-            .map(Option::id)
+            .map(Option::getId)
             .collect(Collectors.joining());
     }
 

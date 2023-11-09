@@ -4,6 +4,7 @@ import com.nixagh.contentinput.entities.Passage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public interface PassageRepository extends JpaRepository<Passage, Long> {
             and p.resourceId = :resourceId
         )
         """)
-    List<Passage> getPassageByQuestionNumberAndResourceId(int questionNumber, Long resourceId);
+    List<Passage> getPassageByQuestionNumberAndResourceId(int questionNumber, BigInteger resourceId);
 
     // get lass passageNumber
     @Query(value = """

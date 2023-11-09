@@ -2,6 +2,7 @@ package com.nixagh.contentinput.modal.excel.GT;
 
 import com.poiji.annotation.ExcelCell;
 import com.poiji.annotation.ExcelCellName;
+import com.poiji.annotation.ExcelSheet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ExcelSheet("WordTies")
 public class WordTieSheet {
     /*Step	Item Type 	Direction Line 	Word ID	Word	Priority/Challenge	Item 	Answer Choices 	Correct Answers	Correct emoji with  feedback phrases randomly selected. 	 Incorrect Feedback 1 to use when all correct answers are chosen on first try but also at least one incorrect is chosen. Students do not get a second try. 	Incorrect emoji with growth mindset feedback. 	Incorrect Feedback 1 to use when none of the student's choices on first try were correct.	Incorrect Feedback 1 to use when not all of the correct answers were chosen on the first try. This is also for when the student chooses only one answer, and it is correct.   	"Incorrect emoji with Feedback phrases randomly selected.
 "	"Final incorrect feedback for students who had a second try.

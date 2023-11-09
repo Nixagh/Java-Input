@@ -7,11 +7,11 @@ import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
-import jakarta.persistence.EntityManager;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 /**
