@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.domain.dto;
+package com.nixagh.contentinput.domain.dto.feedback;
 
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
