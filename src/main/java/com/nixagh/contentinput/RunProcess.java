@@ -225,4 +225,7 @@ public class RunProcess {
 
         System.out.println(str);
     }
+    public void ping() {
+        log.info("Pong !");
+    }
 }

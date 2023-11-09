@@ -1,6 +1,8 @@
 package com.nixagh.contentinput;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nixagh.contentinput.UI.UIApplication;
+import javafx.application.Application;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +15,8 @@ import org.springframework.context.annotation.Bean;
 public class ContentInputApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ContentInputApplication.class, args);
+//        SpringApplication.run(ContentInputApplication.class, args);
+        Application.launch(UIApplication.class, args);
     }
 
     @Bean
@@ -26,10 +29,11 @@ public class ContentInputApplication {
         RunProcess runProcess
     ) {
         return args -> {
-            var folder = "D:\\Work\\.Data\\Grade10_802910";
-            runProcess.setFolder(folder);
-            runProcess.init();
-            runProcess.run();
+//            var folder = "D:\\Work\\.Data\\Grade10_802910";
+//            runProcess.setFolder(folder);
+//            runProcess.init();
+//            runProcess.run();
+            runProcess.ping();
         };
     }
 }
