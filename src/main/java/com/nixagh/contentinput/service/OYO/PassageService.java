@@ -1,14 +1,11 @@
 package com.nixagh.contentinput.service.OYO;
 
 import com.nixagh.contentinput.modal.PassageTab;
-import com.nixagh.contentinput.modal.QuestionContentTab;
-import com.nixagh.contentinput.modal.QuestionTab;
 import com.nixagh.contentinput.modal.excel.GT.WordTieSheet;
 import com.nixagh.contentinput.modal.excel.OYO.PassageSheet;
 import com.nixagh.contentinput.modal.excel.WordListSheet;
 import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
-import com.nixagh.contentinput.service.GT.WordTieService;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
 import javax.persistence.EntityManager;
@@ -17,11 +14,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.IntConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

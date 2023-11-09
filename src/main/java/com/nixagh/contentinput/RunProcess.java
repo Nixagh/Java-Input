@@ -138,9 +138,12 @@ public class RunProcess {
 
     public void run() {
         var category = new File(folder).list();
-        assert category != null;
-        log.info("Run process for product: {}", this.getProductCode());
-        Arrays.stream(category).forEach(this::runCategory);
+        if ( category != null) {
+            log.info("Run process for product: {}", this.getProductCode());
+            Arrays.stream(category).forEach(this::runCategory);
+        } else {
+            log.info("No File");
+        }
     }
 
     private void runCategory(String category) {

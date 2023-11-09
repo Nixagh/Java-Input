@@ -1,6 +1,5 @@
 package com.nixagh.contentinput.modal.excel;
 
-import com.nixagh.contentinput.common.excelFomat.WordListSheetFormat;
 import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelSheet;
 import lombok.Getter;
