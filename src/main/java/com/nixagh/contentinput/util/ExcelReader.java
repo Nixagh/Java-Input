@@ -3,9 +3,14 @@ package com.nixagh.contentinput.util;
 import com.poiji.bind.Poiji;
 import com.poiji.option.PoijiOptions;
 import lombok.RequiredArgsConstructor;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,5 +59,33 @@ public class ExcelReader {
             .trimCellValue(true)
             .build();
         return Poiji.fromExcel(excel, String.class, options);
+    }
+
+    public Workbook openFile(String filePath){
+        try {
+            //reading data from a file in the form of bytes
+            FileInputStream fis = new FileInputStream(filePath);
+            //constructs an XSSFWorkbook object, by buffering the whole stream into the memory
+            return new XSSFWorkbook(fis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<String> getListThemeSheetName(String path) {
+        List<String> lstThemeName = new ArrayList<String>();
+
+        String searchValue = "theme";
+        Workbook wb = this.openFile(path);
+        long numOfSheets = wb.getNumberOfSheets();
+
+        for (int i=1; i<numOfSheets; i++) {
+            String sheetName = wb.getSheetName(i);
+            if(sheetName.toLowerCase().contains(searchValue)){
+                lstThemeName.add(sheetName);
+            }
+        }
+        return lstThemeName;
     }
 }

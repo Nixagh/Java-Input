@@ -1,7 +1,7 @@
 package com.nixagh.contentinput.service.IP.GT;
 
-import com.nixagh.contentinput.repository.PassageRepository;
-import com.nixagh.contentinput.repository.QuestionRepository;
+import com.nixagh.contentinput.domain.repository.PassageRepository;
+import com.nixagh.contentinput.domain.repository.QuestionRepository;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
 import javax.persistence.EntityManager;

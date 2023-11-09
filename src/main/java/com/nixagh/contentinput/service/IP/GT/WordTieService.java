@@ -2,10 +2,10 @@ package com.nixagh.contentinput.service.IP.GT;
 
 import com.nixagh.contentinput.common.enums.VWAEnums;
 import com.nixagh.contentinput.domain.dto.feedback.AdaptiveFeedbackDTO;
-import com.nixagh.contentinput.modal.PassageTab;
-import com.nixagh.contentinput.modal.excel.GT.WordTieSheet;
-import com.nixagh.contentinput.repository.PassageRepository;
-import com.nixagh.contentinput.repository.QuestionRepository;
+import com.nixagh.contentinput.domain.model.PassageTab;
+import com.nixagh.contentinput.domain.model.excel.GT.WordTieSheet;
+import com.nixagh.contentinput.domain.repository.PassageRepository;
+import com.nixagh.contentinput.domain.repository.QuestionRepository;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
 import lombok.AllArgsConstructor;

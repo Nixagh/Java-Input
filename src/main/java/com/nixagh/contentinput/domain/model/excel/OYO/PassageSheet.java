@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.modal.excel.OYO;
+package com.nixagh.contentinput.domain.model.excel.OYO;
 
 import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelUnknownCells;

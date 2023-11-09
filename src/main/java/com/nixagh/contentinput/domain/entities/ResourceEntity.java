@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.entities;
+package com.nixagh.contentinput.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

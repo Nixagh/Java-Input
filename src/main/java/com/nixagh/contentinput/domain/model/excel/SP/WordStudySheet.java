@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.modal.excel.SP;
+package com.nixagh.contentinput.domain.model.excel.SP;
 
 import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelSheet;
