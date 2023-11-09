@@ -118,19 +118,6 @@ public class RunProcess {
         return Integer.parseInt(matcher.find() ? matcher.group("unit") : "0");
     }
 
-    private List<Tuple> getResourceCodes(Integer unit, String type) {
-        var query = entityManager.createNativeQuery(String.format(
-            "select r.resourcecode, r.resourceid , r.description , p.productid , r.adaptiveresourcetype " +
-            "from resource r " +
-            "join product p on p.productid =r.productid " +
-            "join programtoc p2 on p2.programtocid = r.programtocid " +
-            "where p.code = '%s' " +
-            "and p2.\"name\" = 'Unit %d' " +
-            "and r.adaptiveresourcetype = '%s' ", this.getProductCode(), unit, type), Tuple.class);
-
-        return query.getResultList();
-    }
-
     private String getLastElementSplitBy(String str, String splitBy) {
         var split = str.split(splitBy);
         return split[split.length - 1];

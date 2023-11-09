@@ -13,12 +13,12 @@ import java.util.List;
  */
 public interface ResourceRepository extends JpaRepository<ResourceEntity, Long> {
     @Query(value =
-        "select r.resourcecode, r.resourceid , r.description , p.productid , r.adaptiveresourcetype " +
-        "from resource r " +
-        "join product p on p.productid =r.productid " +
-        "join programtoc p2 on p2.programtocid = r.programtocid " +
+        "select r.resourceCode, r.resourceId , r.description , p.productid , r.adaptiveResourceType " +
+        "from ResourceEntity r " +
+        "join ProductEntity p on p.productid = r.productId " +
+        "join ProgramTOCEntity p2 on p2.programtocid = r.programTocId " +
         "where p.code = :code " +
-        "and p2.\"name\" = :unit " +
-        "and r.adaptiveresourcetype = :adaptiveResourceType ", nativeQuery = true)
+        "and p2.name = :unit " +
+        "and r.adaptiveResourceType = :adaptiveResourceType ")
     List<Tuple> getResourceCodes(String code, String unit, String adaptiveResourceType);
 }
