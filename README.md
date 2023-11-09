@@ -1,6 +1,6 @@
 # Java-Input
 
-JDK 21
+JDK 11
 
 ## 1. Scanner
 ContentInputApplication.java 
