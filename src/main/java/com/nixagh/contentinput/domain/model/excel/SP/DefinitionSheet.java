@@ -11,7 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@ExcelSheet("Definitions")
+//@ExcelSheet("Definitions")
 public class DefinitionSheet {
     //     Step	Item Type 	WordID	 Word	Pronunciation	Part of Speech	Inflected Forms Direction Line 	Inflected Forms	Definition 	Example Sentence	Synonyms	Antonyms	Correct Answer(s)	Check Your Spelling Flash Feedback	Word Journal Prompt Definitions	Instructional Video Pickup Code VWS22	Video Word Journal Prompt	Standard
     // help me gen all field
@@ -45,7 +45,7 @@ public class DefinitionSheet {
     private String checkYourSpellingFlashFeedback;
     @ExcelCellName("Word Journal Prompt Definitions")
     private String wordJournalPromptDefinitions;
-    @ExcelCellName("Instructional Video Pickup Code")
+    @ExcelCellName("Instructional Video Pickup Code VWS22")
     private String instructionalVideoPickupCode;
     @ExcelCellName("Video Word Journal Prompt")
     private String videoWordJournalPrompt;

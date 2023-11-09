@@ -12,6 +12,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author nghia.nguyen-dinh
@@ -24,9 +27,16 @@ public class ExcelReader {
 
     public <T> List<T> getExcelFile(String path, String sheetName, Class<T> clazz) {
         File excel = fileUtil.getFile(path);
-
-        var options = getPoijiOptions(sheetName);
+        var sheetNameFound = this.getSheetName(path, sheetName);
+        var options = getPoijiOptions(sheetNameFound);
         return Poiji.fromExcel(excel, clazz, options);
+    }
+
+    public String getSheetName(String path, String name) {
+        return this.getSheetNames(path).stream()
+            .filter(sheetName -> sheetName.toLowerCase().contains(name.toLowerCase()))
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("Sheet name not found"));
     }
 
     public <T> List<T> getExcelFile(String path, Class<T> clazz) {
@@ -74,18 +84,16 @@ public class ExcelReader {
     }
 
     public List<String> getListThemeSheetName(String path) {
-        List<String> lstThemeName = new ArrayList<String>();
-
         String searchValue = "theme";
-        Workbook wb = this.openFile(path);
-        long numOfSheets = wb.getNumberOfSheets();
+        return this.getSheetNames(path).stream()
+            .filter(sheetName -> sheetName.toLowerCase().contains(searchValue))
+            .collect(Collectors.toList());
+    }
 
-        for (int i=1; i<numOfSheets; i++) {
-            String sheetName = wb.getSheetName(i);
-            if(sheetName.toLowerCase().contains(searchValue)){
-                lstThemeName.add(sheetName);
-            }
-        }
-        return lstThemeName;
+    public List<String> getSheetNames(String path) {
+        Workbook wb = this.openFile(path);
+        return IntStream.range(0, wb.getNumberOfSheets())
+            .mapToObj(wb::getSheetName)
+            .collect(Collectors.toList());
     }
 }
