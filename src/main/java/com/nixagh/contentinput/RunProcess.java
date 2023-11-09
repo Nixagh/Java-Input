@@ -2,9 +2,9 @@ package com.nixagh.contentinput;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nixagh.contentinput.repository.PassageRepository;
-import com.nixagh.contentinput.repository.QuestionRepository;
-import com.nixagh.contentinput.repository.ResourceRepository;
+import com.nixagh.contentinput.domain.repository.PassageRepository;
+import com.nixagh.contentinput.domain.repository.QuestionRepository;
+import com.nixagh.contentinput.domain.repository.ResourceRepository;
 import com.nixagh.contentinput.service.IP.GT.ChoosingRightWordGTService;
 import com.nixagh.contentinput.service.IP.GT.ExampleService;
 import com.nixagh.contentinput.service.IP.GT.VocabularyInContextDiffService;

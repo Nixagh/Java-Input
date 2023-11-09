@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.entities;
+package com.nixagh.contentinput.domain.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

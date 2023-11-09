@@ -1,14 +1,14 @@
 package com.nixagh.contentinput.service;
 
 import com.nixagh.contentinput.common.enums.CorrectAnswer;
-import com.nixagh.contentinput.entities.PassageEntity;
-import com.nixagh.contentinput.entities.QuestionEntity;
-import com.nixagh.contentinput.modal.PassageTab;
-import com.nixagh.contentinput.modal.QuestionContentTab;
-import com.nixagh.contentinput.modal.QuestionTab;
-import com.nixagh.contentinput.modal.excel.WordListSheet;
-import com.nixagh.contentinput.repository.PassageRepository;
-import com.nixagh.contentinput.repository.QuestionRepository;
+import com.nixagh.contentinput.domain.entities.PassageEntity;
+import com.nixagh.contentinput.domain.entities.QuestionEntity;
+import com.nixagh.contentinput.domain.model.PassageTab;
+import com.nixagh.contentinput.domain.model.QuestionContentTab;
+import com.nixagh.contentinput.domain.model.QuestionTab;
+import com.nixagh.contentinput.domain.model.excel.WordListSheet;
+import com.nixagh.contentinput.domain.repository.PassageRepository;
+import com.nixagh.contentinput.domain.repository.QuestionRepository;
 import com.nixagh.contentinput.util.ExcelReader;
 import javax.persistence.EntityManager;
 import lombok.Getter;

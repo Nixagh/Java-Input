@@ -1,11 +1,11 @@
 package com.nixagh.contentinput.service.IP.OYO;
 
-import com.nixagh.contentinput.modal.PassageTab;
-import com.nixagh.contentinput.modal.excel.GT.WordTieSheet;
-import com.nixagh.contentinput.modal.excel.OYO.PassageSheet;
-import com.nixagh.contentinput.modal.excel.WordListSheet;
-import com.nixagh.contentinput.repository.PassageRepository;
-import com.nixagh.contentinput.repository.QuestionRepository;
+import com.nixagh.contentinput.domain.model.PassageTab;
+import com.nixagh.contentinput.domain.model.excel.GT.WordTieSheet;
+import com.nixagh.contentinput.domain.model.excel.OYO.PassageSheet;
+import com.nixagh.contentinput.domain.model.excel.WordListSheet;
+import com.nixagh.contentinput.domain.repository.PassageRepository;
+import com.nixagh.contentinput.domain.repository.QuestionRepository;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
 import javax.persistence.EntityManager;

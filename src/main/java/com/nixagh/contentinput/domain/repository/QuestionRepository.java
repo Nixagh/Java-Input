@@ -1,6 +1,6 @@
-package com.nixagh.contentinput.repository;
+package com.nixagh.contentinput.domain.repository;
 
-import com.nixagh.contentinput.entities.QuestionEntity;
+import com.nixagh.contentinput.domain.entities.QuestionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

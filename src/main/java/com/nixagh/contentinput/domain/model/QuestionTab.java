@@ -1,4 +1,4 @@
-package com.nixagh.contentinput.modal;
+package com.nixagh.contentinput.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;

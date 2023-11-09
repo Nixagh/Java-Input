@@ -1,10 +1,10 @@
 package com.nixagh.contentinput.service.IP.SP;
 
-import com.nixagh.contentinput.modal.excel.SP.DefinitionSheet;
-import com.nixagh.contentinput.modal.excel.SP.VisualSheet;
-import com.nixagh.contentinput.modal.excel.SP.WordStudySheet;
-import com.nixagh.contentinput.repository.PassageRepository;
-import com.nixagh.contentinput.repository.QuestionRepository;
+import com.nixagh.contentinput.domain.model.excel.SP.DefinitionSheet;
+import com.nixagh.contentinput.domain.model.excel.SP.VisualSheet;
+import com.nixagh.contentinput.domain.model.excel.SP.WordStudySheet;
+import com.nixagh.contentinput.domain.repository.PassageRepository;
+import com.nixagh.contentinput.domain.repository.QuestionRepository;
 import com.nixagh.contentinput.service.VWABaseService;
 import com.nixagh.contentinput.util.ExcelReader;
 import lombok.Getter;

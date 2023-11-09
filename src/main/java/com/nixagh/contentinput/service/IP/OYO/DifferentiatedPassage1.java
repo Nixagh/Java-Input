@@ -1,9 +1,9 @@
 package com.nixagh.contentinput.service.IP.OYO;
 
 import com.nixagh.contentinput.common.enums.VWAEnums;
-import com.nixagh.contentinput.modal.excel.OYO.DifferentiatedPassageSheet;
-import com.nixagh.contentinput.repository.PassageRepository;
-import com.nixagh.contentinput.repository.QuestionRepository;
+import com.nixagh.contentinput.domain.model.excel.OYO.DifferentiatedPassageSheet;
+import com.nixagh.contentinput.domain.repository.PassageRepository;
+import com.nixagh.contentinput.domain.repository.QuestionRepository;
 import com.nixagh.contentinput.util.ExcelReader;
 import javax.persistence.EntityManager;
 
