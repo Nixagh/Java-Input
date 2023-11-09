@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root circle="" underline="" inPassage="false" x="" y="" pDirection=""
+      puzzleNumber="" puncMark="" acceptOne="">
+    <question>
+        %s
+    </question>
+    <direction></direction>
+    <direction4Print></direction4Print>
+    <epilog></epilog>
+    <showOptionLabel>true</showOptionLabel>
+    <scrambleOption>true</scrambleOption>
+</root>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root circle="" underline="" inPassage="false" x="" y="" pDirection=""
+      puzzleNumber="" puncMark="" acceptOne="">
+    <question>&lt;div class="question-questionStem question-questionStem-1-column"&gt;&#xd;
+        &lt;div class="question-stem-content"&gt;&#xd;
+        &lt;div class="question"&gt;Which is the best synonym for &lt;b&gt;cursory&lt;/b&gt; as it is used in paragraph
+        1?&#xd;
+        &lt;div cid="802910_GT_VIC_D_u01_q02_ans01" ctype="MultipleChoice" layout="Vertical" qname="a2" showlabel="true"
+        subtype="MC"&gt;&#xd;
+        &lt;div itemid="a" itemlabel=""&gt;hasty&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="b" itemlabel=""&gt;carefully&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="c" itemlabel=""&gt;strong&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="d" itemlabel=""&gt;exactly&lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;
+    </question>
+    <direction></direction>
+    <direction4Print></direction4Print>
+    <epilog></epilog>
+    <showOptionLabel>true</showOptionLabel>
+    <scrambleOption>true</scrambleOption>
+</root>

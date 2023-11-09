@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root circle="" underline="" inPassage="false" x="" y="" pDirection=""
+      puzzleNumber="" puncMark="" acceptOne="">
+    <question>&lt;div adaptivetype="A" class="question-questionStem question-questionStem-1-column"&gt;&#xd;
+        &lt;div class="question-stem-content"&gt;&#xd;
+        &lt;div class="question"&gt;When asked about his plans for the company, the CEO&amp;#39;s &lt;b&gt;stratagem&lt;/b&gt;
+        is to change the subject.&#xd;
+        &lt;div cid="802910_OYO_AP_u01_q07_ans01" ctype="MultipleChoice" layout="Vertical" qname="a7" subtype="MC"
+        total="12"&gt;&#xd;
+        &lt;div itemid="a" itemlabel="" word="word4000"&gt;cursory&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="b" itemlabel="" word="word4001"&gt;deft&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="c" itemlabel="" word="word4002"&gt;meticulous&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="d" itemlabel="" word="word4003"&gt;rampant&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="e" itemlabel="" word="word4004"&gt;remiss&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="f" itemlabel="" word="word4005"&gt;tentative&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="g" itemlabel="" word="word4010"&gt;artifice&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="h" itemlabel="" word="word4011"&gt;facile&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="i" itemlabel="" word="word4012"&gt;mandatory&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="j" itemlabel="" word="word4013"&gt;punitive&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="k" itemlabel="" word="word4014"&gt;redress&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="l" itemlabel="" word="word4016"&gt;retribution&lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;
+    </question>
+    <direction></direction>
+    <direction4Print></direction4Print>
+    <epilog></epilog>
+    <showOptionLabel>true</showOptionLabel>
+    <scrambleOption>true</scrambleOption>
+</root>

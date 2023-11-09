@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root circle="" underline="" inPassage="false" x="" y="" pDirection=""
+      puzzleNumber="" puncMark="" acceptOne="">
+    <question>&lt;div class="question-questionStem question-questionStem-1-column"&gt;&#xd;
+        &lt;div class="question-stem-content"&gt;&#xd;
+        &lt;div class="syn-ant-body"&gt;&lt;b&gt;SYNONYMS &lt;/b&gt;quick, superficial, perfunctory&lt;br /&gt;&#xd;
+        &lt;b&gt;ANTONYMS &lt;/b&gt;thorough, painstaking, careful&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div class="question"&gt;The mayor gave a final &lt;input autocapitalize="off" autocomplete="off"
+        autocorrect="off" cid="802910_definitions_u01_q01_ans01" ctype="Fill_in_Blank" qname="q1" spellcheck="false"
+        subtype="word" type="text" /&gt; glance at the text of her speech before walking to the podium.&lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;
+    </question>
+    <direction></direction>
+    <direction4Print></direction4Print>
+    <epilog></epilog>
+    <showOptionLabel>true</showOptionLabel>
+    <scrambleOption>true</scrambleOption>
+</root>

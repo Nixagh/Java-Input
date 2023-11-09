@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root circle="" underline="" inPassage="false" x="" y="" pDirection=""
+      puzzleNumber="" puncMark="" acceptOne="">
+    <question>&lt;div class="question-questionStem question-questionStem-1-column"&gt;&#xd;
+        &lt;div class="question-stem-content"&gt;&#xd;
+        &lt;div class="nonexample"&gt;&lt;b&gt;Nonexamples&lt;/b&gt; are similar or closely related to the vocabulary
+        word, but do not accurately reflect its meaning.&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div class="example"&gt;&lt;b&gt;Examples&lt;/b&gt; accurately reflect the meaning of the vocabulary word.&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div class="neither"&gt;&lt;b&gt;Neither&lt;/b&gt; is used for items that are not similar to or related to
+        the vocabulary word, nor do they accurately reflect its meaning.&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div class="question"&gt;&#xd;
+        &lt;div cid="802910_GT_EN_u01_q02_ans01" ctype="Drag_n_Drop_Adaptive" evalsourceanswers="false" framesize=""
+        initcount="" layout="fixed_layout" multipledrag="false" multipledrop="false" printtype="Write_on_Line"
+        qname="a2" removeitemafterdrag="false" subtype=""&gt;&#xd;
+        &lt;div style="text-align:left" subid="sourceItems"&gt;&#xd;
+        &lt;div idx="1"&gt;They are proficient in completing their assignments.&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div idx="2"&gt;She made a nifty move to score a goal.&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div idx="3"&gt;He enjoyed a healthy lunch.&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div idx="4"&gt;We felt awkward the first time we sang together.&lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div subid="targetItems"&gt;&#xd;
+        &lt;div idx="a"&gt;Nonexample&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div idx="b"&gt;Example&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div idx="c"&gt;Neither&lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;
+    </question>
+    <direction></direction>
+    <direction4Print></direction4Print>
+    <epilog></epilog>
+    <showOptionLabel>true</showOptionLabel>
+    <scrambleOption>true</scrambleOption>
+</root>

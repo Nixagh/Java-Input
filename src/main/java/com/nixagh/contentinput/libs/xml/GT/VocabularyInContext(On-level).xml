@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root circle="" underline="" inPassage="false" x="" y="" pDirection=""
+      puzzleNumber="" puncMark="" acceptOne="">
+    <question>&lt;div class="question-questionStem question-questionStem-1-column"&gt;&#xd;
+        &lt;div class="question-stem-content"&gt;&#xd;
+        &lt;div class="question"&gt;In paragraph 2, &lt;b&gt;meticulous&lt;/b&gt; means&#xd;
+        &lt;div cid="802910_GT_VinC_OL_u01_q03_ans01" ctype="MultipleChoice" layout="Vertical" qname="a3"
+        showlabel="true" subtype="MC"&gt;&#xd;
+        &lt;div itemid="a" itemlabel=""&gt;measured&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="b" itemlabel=""&gt;extremely careful&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="c" itemlabel=""&gt;in a hurry&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div itemid="d" itemlabel=""&gt;calm&lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+    </question>
+    <direction></direction>
+    <direction4Print></direction4Print>
+    <epilog></epilog>
+    <showOptionLabel>true</showOptionLabel>
+    <scrambleOption>true</scrambleOption>
+</root>

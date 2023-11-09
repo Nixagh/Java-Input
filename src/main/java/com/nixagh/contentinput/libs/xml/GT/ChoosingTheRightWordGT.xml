@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root circle="" underline="" inPassage="false" x="" y="" pDirection=""
+      puzzleNumber="" puncMark="" acceptOne="">
+    <question>&lt;div class="question-questionStem question-questionStem-1-column"&gt;&#xd;
+        &lt;div class="question-stem-content"&gt;&#xd;
+        &lt;div class="question"&gt;Instead of proofreading his essay, the student took a&#xd;
+        &lt;div cid="802910_GT_CTRW_u01_q01_ans01" ctype="Drop_Down" qname="a1"&gt;&#xd;
+        &lt;div subid="options"&gt;&#xd;
+        &lt;div idx="a" word="word4000"&gt;cursory&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div idx="b" word="word4002"&gt;meticulous&lt;/div&gt;&#xd;
+        &#xd;
+        &lt;div idx="c" word="word4009"&gt;scrupulous&lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        look at it and quickly handed it in.&lt;/div&gt;&#xd;
+        &lt;/div&gt;&#xd;
+        &lt;/div&gt;
+    </question>
+    <direction></direction>
+    <direction4Print></direction4Print>
+    <epilog></epilog>
+    <showOptionLabel>true</showOptionLabel>
+    <scrambleOption>true</scrambleOption>
+</root>
