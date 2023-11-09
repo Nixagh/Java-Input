@@ -1,8 +1,8 @@
 package com.nixagh.contentinput.service;
 
 import com.nixagh.contentinput.common.enums.CorrectAnswer;
-import com.nixagh.contentinput.entities.Passage;
-import com.nixagh.contentinput.entities.Question;
+import com.nixagh.contentinput.entities.PassageEntity;
+import com.nixagh.contentinput.entities.QuestionEntity;
 import com.nixagh.contentinput.modal.PassageTab;
 import com.nixagh.contentinput.modal.QuestionContentTab;
 import com.nixagh.contentinput.modal.QuestionTab;
@@ -15,8 +15,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.LogFactory;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
 import org.springframework.stereotype.Component;
 
+import java.io.StringWriter;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +41,7 @@ import java.util.regex.Pattern;
 @Component
 public class VWABaseService {
     protected List<WordListSheet> wordListSheets;
-    protected List<Question> questions = new ArrayList<>();
+    protected List<QuestionEntity> questions = new ArrayList<>();
     protected Map<String, List<String>> error = new HashMap<>();
     protected List<String> logs = new ArrayList<>();
 
@@ -58,6 +61,8 @@ public class VWABaseService {
     protected final QuestionRepository questionRepository;
     protected final PassageRepository passageRepository;
     protected final EntityManager entityManager;
+//    protected final VelocityEngine velocityEngine;
+    protected final VelocityEngine velocityEngine = new VelocityEngine();
 
 
     public VWABaseService(ExcelReader excelReader, QuestionRepository questionRepository, PassageRepository passageRepository, EntityManager entityManager) {
@@ -89,7 +94,7 @@ public class VWABaseService {
         return this.resourceId;
     }
 
-    protected List<Passage> getPassages(int questionNumber) {
+    protected List<PassageEntity> getPassages(int questionNumber) {
         return this.passageRepository.getPassageByQuestionNumberAndResourceId(questionNumber, this.resourceId);
     }
 
@@ -148,7 +153,7 @@ public class VWABaseService {
     public void createQuestion(){};
 
     public void createQuestion(QuestionTab questionTab, PassageTab passageTab, QuestionContentTab questionContentTab, String feedback) {
-        var question = new Question();
+        var question = new QuestionEntity();
         question.setQuestionuid(String.valueOf(UUID.randomUUID()));
         question.setProductid(this.getProductId());
         question.setResourceid(this.getResourceId());
@@ -168,8 +173,8 @@ public class VWABaseService {
         this.questions.add(question);
 
         // save question
-        this.questionRepository.save(question);
-//        System.out.println(question);
+//        this.questionRepository.save(question);
+        System.out.println(question);
         this.logs.add("Create question success: " + question.getQuestionuid());
     }
 
@@ -227,7 +232,7 @@ public class VWABaseService {
         }
     }
 
-    private void setQuestionTab(Question question, QuestionTab questionTab) {
+    private void setQuestionTab(QuestionEntity question, QuestionTab questionTab) {
         question.setQuestionnumber(questionTab.getQuestionNumber());
         question.setQuestiontypeid(questionTab.getQuestionTypeId());
         question.setStandards(questionTab.getStandard());
@@ -239,12 +244,12 @@ public class VWABaseService {
         question.setAdaptiveanswercount(questionTab.getAdaptiveAnswerCount());
     }
 
-    private void setPassageTab(Question question, PassageTab passageTab) {
+    private void setPassageTab(QuestionEntity question, PassageTab passageTab) {
         Optional.ofNullable(passageTab.getPassageId()).ifPresentOrElse(
             question::setPassageid,
             () -> {
                 // create new passage and set passage id
-                var passage = new Passage();
+                var passage = new PassageEntity();
                 var uid = String.valueOf(UUID.randomUUID());
                 passage.setPassageUid(uid);
                 passage.setPassageContent(passageTab.getContent());
@@ -264,37 +269,38 @@ public class VWABaseService {
                 passage.setPassageSummary(passageTab.getSummary());
                 passage.setDirectionLine(passageTab.getDirectionLine());
 
-                var result = this.passageRepository.save(passage);
-                question.setPassageid(result.getPassageId());
+//                var result = this.passageRepository.save(passage);
+//                question.setPassageid(result.getPassageId());
             }
         );
     }
 
-    private void setQuestionContentTab(Question question, QuestionContentTab questionContentTab) {
+    private void setQuestionContentTab(QuestionEntity question, QuestionContentTab questionContentTab) {
         question.setQuestionxml(this.getQuestionXML(questionContentTab.getContent()));
         question.setCorrectanswer(questionContentTab.getCorrectAnswer());
         question.setCorrectanswertexthtml(questionContentTab.getCorrectAnswerTextHtml());
     }
 
-    private void setFeedbackTab(Question question, String feedback) {
+    private void setFeedbackTab(QuestionEntity question, String feedback) {
         question.setFeedback(feedback);
     }
 
-    private String getQuestionXML(String questionContent) {
-        var result = """
-            <?xml version="1.0" encoding="UTF-8"?>
-            <root circle="" underline="" inPassage="false" x="" y="" pDirection=""
-                  puzzleNumber="" puncMark="" acceptOne="">
-                <question>%s</question>
-                <direction></direction>
-                <direction4Print></direction4Print>
-                <epilog></epilog>
-                <showOptionLabel>true</showOptionLabel>
-                <scrambleOption>true</scrambleOption>
-            </root>""".formatted(questionContent).replaceAll("[\n\r]", "");
+    protected String addByVM(String template, Map<String, Object> map) {
+        var context = new VelocityContext(map);
+        var writer = new StringWriter();
+        var _template = this.velocityEngine.getTemplate(template);
 
-        // remove extra space
-        return result.replaceAll(" +", " ");
+        _template.merge(context, writer);
+        return writer.toString();
+    }
+
+    private String getQuestionXML(String questionContent) {
+        Map<String, Object> map = Map.of("questionContent", questionContent);
+        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/QuestionXML.vm", map)
+            .replaceAll("\n", "")
+            .replaceAll("\r", "")
+            .replaceAll("\t", "")
+            .replaceAll(" +", " ");
     }
 
     protected String getCID(int questionNumber) {
@@ -364,7 +370,7 @@ public class VWABaseService {
 
         // template: "Connected" defines the word <4021>cohesive</word4021>.
         // result: "Connected" defines the word <4021>word4021:cohesive</word4021>.
-        var replacement = "<word%s>word%s:%s</word%s>".formatted(wordId, wordId, word, wordId);
+        var replacement = String.format("<word%s>word%s:%s</word%s>", wordId, wordId, word, wordId);
         return feedback.replaceAll(regex, replacement);
     }
 
@@ -406,7 +412,7 @@ public class VWABaseService {
 
             // template: "Connected" defines the word <4021>cohesive</word4021>.
             // result: "Connected" defines the word <4021>word4021:cohesive</word4021>.
-            var replacement = "<word%s>word%s:%s</word%s>".formatted(wordId, wordId, word, wordId);
+            var replacement = String.format("<word%s>word%s:%s</word%s>", wordId, wordId, word, wordId);
             content = content.replace(regex, replacement);
         }
 

@@ -46,11 +46,4 @@ public class WordListSheet {
     private String p2Set;
     @ExcelCellName("Tier")
     private Integer tier;
-
-    @Override
-    public String toString() {
-        return """
-            {"wordID": "%s","level": "%s","unit": %d,"multipleMeaning": "%s","wjDefinitionsAndWjSentenceEntryFields": %d,"priorityChallenge": "%s","word": "%s","themes": "%s","pronunciation": "%s","partOfSpeech": "%s","feedbackRolloverDefinition": "%s","synonyms": "%s","antonyms": "%s","p1Set": "%s","p2Set": "%s","tier": %d}
-            """.formatted(this.wordID, this.level, this.unit, this.multipleMeaning, this.wjDefinitionsAndWjSentenceEntryFields, this.priorityChallenge, this.word, this.themes, this.pronunciation, this.partOfSpeech, this.feedbackRolloverDefinition, this.synonyms, this.antonyms, this.p1Set, this.p2Set, this.tier);
-    }
 }

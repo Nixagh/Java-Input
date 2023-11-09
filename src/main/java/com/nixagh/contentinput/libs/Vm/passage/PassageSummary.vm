@@ -1,0 +1,5 @@
+<div class="select-page" resourcelevel="true">
+    <div class="sp-cover"><img alt="" src="/cms/repository/cms/images2020/${image}.jpg" /></div>
+    <div class="sp_title">${title}</div>
+    <div class="sp-description">${description}</div>
+</div>

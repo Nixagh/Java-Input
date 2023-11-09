@@ -1,10 +1,8 @@
 package com.nixagh.contentinput.service.GT;
 
 import com.nixagh.contentinput.common.enums.VWAEnums;
-import com.nixagh.contentinput.entities.Passage;
 import com.nixagh.contentinput.modal.PassageTab;
 import com.nixagh.contentinput.modal.excel.GT.WordTieSheet;
-import com.nixagh.contentinput.modal.excel.SP.DefinitionSheet;
 import com.nixagh.contentinput.repository.PassageRepository;
 import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.service.VWABaseService;
@@ -12,11 +10,14 @@ import com.nixagh.contentinput.util.ExcelReader;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.velocity.VelocityContext;
 
 import javax.persistence.EntityManager;
 
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -89,17 +90,15 @@ public class WordTieService extends VWABaseService {
     private String buildContent(WordTieSheet wordTieSheet, int questionNumber) {
         var item = wordTieSheet.getItem();
         var answerChoices = wordTieSheet.getAnswerChoices();
-        return """
-            <div class="question-questionStem question-questionStem-1-column">
-                <div class="question-stem-content">
-                   <div class="question">%s<br />
-                       <br />
-                       <div cid="%s" ctype="MultipleChoice" layout="Vertical" qname="a%d" subtype="MSC">
-                           %s
-                       </div>
-                   </div>
-                </div>
-            </div>""".formatted(item, this.getCID(questionNumber), questionNumber, this.getOptions(answerChoices, questionNumber));
+
+        Map<String, Object> map = Map.of(
+            "item", item,
+            "cid", this.getCID(questionNumber),
+            "questionNumber", questionNumber,
+            "options", this.getOptions(answerChoices, questionNumber)
+        );
+
+        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/wordTies/WordTieQuestionContent.vm", map);
     }
 
     private String getOptions(String answerChoices, int questionNumber) {
@@ -110,9 +109,7 @@ public class WordTieService extends VWABaseService {
     }
 
     private String toHtml(Option option) {
-        return """
-            <div itemid="%s" itemlabel="">%s</div>
-            """.formatted(option.id, option.content);
+        return String.format("<div itemid=\"%s\" itemlabel=\"\">%s</div>", option.id, option.content);
     }
 
     private String getCorrectAnswer(String correctAnswers, String answerChoices, int questionNumber) {
@@ -168,13 +165,10 @@ public class WordTieService extends VWABaseService {
         var incorrectEmoji3 = wordTieSheet.getIncorrectEmoji3();
         var incorrectEmoji4 = wordTieSheet.getIncorrectEmoji4();
 
-        return """
-            {"correctFeedback": %s, "incorrectFeedback1": %s, "incorrectFeedback2": %s, "incorrectFeedback3": %s, "incorrectFeedback4": %s, "correctEmoji": %s, "incorrectEmoji1": %s, "incorrectEmoji2": %s, "incorrectEmoji3": %s, "incorrectEmoji4": %s}
-            """.formatted(correctFeedback, incorrectFeedback1, incorrectFeedback2, incorrectFeedback3, incorrectFeedback4, correctEmoji, incorrectEmoji1, incorrectEmoji2, incorrectEmoji3, incorrectEmoji4);
+        return String.format("{\"correctFeedback\": %s, \"incorrectFeedback1\": %s, \"incorrectFeedback2\": %s, \"incorrectFeedback3\": %s, \"incorrectFeedback4\": %s, \"correctEmoji\": %s, \"incorrectEmoji1\": %s, \"incorrectEmoji2\": %s, \"incorrectEmoji3\": %s, \"incorrectEmoji4\": %s}", correctFeedback, incorrectFeedback1, incorrectFeedback2, incorrectFeedback3, incorrectFeedback4, correctEmoji, incorrectEmoji1, incorrectEmoji2, incorrectEmoji3, incorrectEmoji4);
     }
 
     private String toListOfString(String str) {
-        return """
-            ["%s"]""".formatted(str);
+        return String.format("[\"%s\"]", str);
     }
 }

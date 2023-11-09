@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.EntityManager;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 /**
@@ -56,14 +58,13 @@ public class DefinitionService extends SPService {
         var synAntBody = this.getSynAntBody(definitionSheet.getSynonyms(), definitionSheet.getAntonyms());
         var questionHTMl = this.getQuestionHTML(definitionSheet.getExampleSentence(), questionNumber);
 
-        return """
-            <div class="question-questionStem question-questionStem-1-column">
-                <div class="question-stem-content">
-                    %s
-                    %s
-                    %s
-                </div>
-            </div>""".formatted(inflectedFormsHTML, synAntBody, questionHTMl).trim();
+        Map<String, Object> map = Map.of(
+            "inflectedFormsHTML", inflectedFormsHTML,
+            "synAntBody", synAntBody,
+            "questionHTMl", questionHTMl
+        );
+
+        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/definition/QuestionContent.vm", map);
     }
 
     public String getInflectedFormsHTML(String inflectedForms) {
@@ -74,8 +75,7 @@ public class DefinitionService extends SPService {
         var regex = "<i>|<(/|)i>";
         inflectedForms = inflectedForms.replaceAll(regex, "");
 
-        return """
-            <div class="inflected-forms"><i>%s</i></div>""".formatted(inflectedForms);
+        return String.format("<div class=\"inflected-forms\"><i>%s</i></div>",inflectedForms);
     }
 
     public String getSynAntBody(String synonyms, String antonyms) {
@@ -89,22 +89,17 @@ public class DefinitionService extends SPService {
         var _synonyms = !synonyms.isEmpty() ? "<b>SYNONYMS </b> " + synonyms : "";
         var _antonyms = !antonyms.isEmpty() ? !synonyms.isEmpty() ? "<br/> <b>ANTONYMS </b> " + antonyms : "<b>ANTONYMS </b> " + antonyms : "";
 
-        return """
-            <div class="syn-ant-body">%s %s</div>"""
-            .formatted(_synonyms, _antonyms);
+        return String.format("<div class=\"syn-ant-body\">%s %s</div>", _synonyms, _antonyms);
     }
 
     public String getQuestionHTML(String item, Integer questionNumber) {
         var cid = this.getCID(questionNumber);
 
-        var input = """
-            <input autocapitalize="off" autocomplete="off" autocorrect="off" cid="%s" ctype="Fill_in_Blank" qname="a%d" spellcheck="false" subtype="word" type="text" />"""
-            .formatted(cid, questionNumber);
+        var input = String.format("<input autocapitalize=\"off\" autocomplete=\"off\" autocorrect=\"off\" cid=\"%s\" ctype=\"Fill_in_Blank\" qname=\"a%d\" spellcheck=\"false\" subtype=\"word\" type=\"text\" />",cid, questionNumber);
 
         var regex = "\\[(.+?)]";
         var question = item.replaceAll(regex, input);
 
-        return """
-            <div class="question">%s</div>""".formatted(question);
+        return String.format("<div class=\"question\">%s</div>", question);
     }
 }

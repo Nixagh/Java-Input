@@ -18,7 +18,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.IntConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -152,15 +154,9 @@ public class PassageService extends VWABaseService {
     }
 
     private String buildPassageContent(String content) {
-        var title = this.getPassageTitle(content);
-        var body = this.passageBodyConvert(content);
+        Map<String, Object> map = Map.of("title", this.getPassageTitle(content), "body", this.passageBodyConvert(content), "productCode", this.getProductCode());
 
-        return """
-            <div class="direction_section">
-            <div audio-source="/content/%s/AudioPassages/%s_ipA_U1_Choice_P1_Drivers.mp3" class="audio-inline" style="display: inline-flex; width: auto;"></div>
-            <div class="title">%s</div>
-                %s
-            </div>""".formatted(this.getProductCode(), this.getProductCode(), title, body);
+        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/passage/PassageContent.vm", map);
     }
 
     private String getPassageTitle(String content) {
@@ -184,25 +180,19 @@ public class PassageService extends VWABaseService {
 
         var description = summary.replace(regex, "").trim();
 
-        return """
-            <div class="select-page" resourcelevel="true">
-                <div class="sp-cover"><img alt="" src="/cms/repository/cms/images2020/%s.jpg" /></div>
-                <div class="sp_title">%s</div>
-                <div class="sp-description">%s</div>
-            </div>""".formatted(image, title, description);
+        Map<String, Object> map = Map.of("title", title, "description", description, "image", image);
+
+        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/passage/PassageSummary.vm", map);
     }
 
     private String buildQuestionContent(String item, String itemChoices, int questionNumber) {
-        return """
-            <div class="question-questionStem question-questionStem-1-column">
-                <div class="question-stem-content">
-                    <div class="question">%s
-                        <div cid="%s" ctype="MultipleChoice" layout="Vertical" qname="a%d" showlabel="true" subtype="MC">
-                            %s
-                        </div>
-                    </div>
-                </div>
-            </div>""".formatted(item, this.getCID(questionNumber), questionNumber, this.getOptions(itemChoices, questionNumber));
+        Map<String, Object> map = new HashMap<>();
+        map.put("questionNumber", questionNumber);
+        map.put("item", item);
+        map.put("cid", this.getCID(questionNumber));
+        map.put("options", this.getOptions(itemChoices, questionNumber));
+
+        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/passage/QuestionContent.vm", map);
     }
 
     private String getOptions(String itemChoices, int questionNumber) {
@@ -213,8 +203,7 @@ public class PassageService extends VWABaseService {
     }
 
     private String toHTML(Option option) {
-        return """
-            <div itemid="%s" itemlabel="">%s</div>""".formatted(option.id, option.content);
+        return String.format("<div itemid=\"%s\" itemlabel=\"\">%s</div>", option.id, option.content);
     }
 
     @Getter
@@ -251,8 +240,7 @@ public class PassageService extends VWABaseService {
         var paragraph = "";
         if (matcher.find()) {
             var temp = matcher.group("paragraph");
-            paragraph = """
-                {"paragraphId": "%s"}""".formatted(temp);
+            paragraph = String.format("{\"paragraphId\": \"%s\"}",temp);
         }
         return paragraph;
     }

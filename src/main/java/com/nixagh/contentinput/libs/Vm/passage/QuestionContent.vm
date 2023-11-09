@@ -1,0 +1,9 @@
+<div class="question-questionStem question-questionStem-1-column">
+    <div class="question-stem-content">
+        <div class="question">${item}
+            <div cid="${cid}" ctype="MultipleChoice" layout="Vertical" qname="a${questionNumber}" showlabel="true" subtype="MC">
+                ${options}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="question-questionStem question-questionStem-1-column">
+    <div class="question-stem-content">
+        <div class="question">
+            <div cid="${cid}" ctype="Video" data-source="${dataSources}" qname="a${questionNumber}"></div>
+        </div>
+    </div>
+</div>

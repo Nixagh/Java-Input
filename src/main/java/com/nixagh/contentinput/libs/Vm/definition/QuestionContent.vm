@@ -1,0 +1,7 @@
+<div class="question-questionStem question-questionStem-1-column">
+    <div class="question-stem-content">
+        ${inflectedFormsHTML}
+        ${synAntBody}
+        ${questionHTMl}
+    </div>
+</div>

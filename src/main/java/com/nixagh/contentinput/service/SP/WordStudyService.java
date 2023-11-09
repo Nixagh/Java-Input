@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 /**
@@ -65,24 +67,31 @@ public class WordStudyService extends SPService {
         var leftImageHTML = isMultipleMeaning ? this.getLeftImageHTML(wordStudySheet.getImageDetails()) : "";
         var rightImageHTML = isMultipleMeaning ? this.getRightImageHTML(wordStudySheet.getImageDetails()) : "";
 
-        return """
-            <div class="question-questionStem question-questionStem-1-column">
-                  <div class="question-stem-content">
-                  %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s
-                  </div>
-                  <div class="question"><div cid="%s" ctype="View" qname="a%d"></div>
-                  </div>
-                  </div>
-                  </div>
-            """.formatted(inflectedFormsHTML, characteristicsImageHTML, prefixHTML, rootOrBaseHTMl,
-            suffixHTML, introductionHTML, firstSampleHTML, firstExplainHTML, firstAltText, secondSampleHTML, secondExplainHTML, secondAltText,
-            wordJounalPromtHTML, leftImageHTML, rightImageHTML, this.getCID(questionNumber), questionNumber);
+        Map<String, Object> map = new HashMap<>();
+        map.put("inflectedFormsHTML", inflectedFormsHTML);
+        map.put("characteristicsImageHTML", characteristicsImageHTML);
+        map.put("prefixHTML", prefixHTML);
+        map.put("rootOrBaseHTMl", rootOrBaseHTMl);
+        map.put("suffixHTML", suffixHTML);
+        map.put("introductionHTML", introductionHTML);
+        map.put("firstSampleHTML", firstSampleHTML);
+        map.put("firstExplainHTML", firstExplainHTML);
+        map.put("firstAltText", firstAltText);
+        map.put("secondSampleHTML", secondSampleHTML);
+        map.put("secondExplainHTML", secondExplainHTML);
+        map.put("secondAltText", secondAltText);
+        map.put("wordJounalPromtHTML", wordJounalPromtHTML);
+        map.put("leftImageHTML", leftImageHTML);
+        map.put("rightImageHTML", rightImageHTML);
+        map.put("questionNumber", questionNumber);
+        map.put("cid", this.getCID(questionNumber));
+        
+        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/wordStudy/QuestionContent.vm", map);
     }
 
     private String getInflectedFormsHTML(String inflectedForm) {
         if (inflectedForm == null || inflectedForm.isEmpty()) return "";
-        return """
-            <div class="inflected-forms"><i>%s</i></div>""".formatted(inflectedForm.replaceAll("<i>|<(/|)i>", ""));
+        return String.format("<div class=\"inflected-forms\"><i>%s</i></div>", inflectedForm.replaceAll("<i>|<(/|)i>", ""));
     }
 
     private String getCharacteristicsImageHTML(String characteristicsImage) {
@@ -91,8 +100,7 @@ public class WordStudyService extends SPService {
         if (characteristicsImage.contains("Multiple Meaning"))
             characteristicsImage = characteristicsImage.replace("Multiple Meaning", "Multiple-meaning");
 
-        return """
-            <div class="characteristics-image">%s</div>""".formatted(characteristicsImage);
+        return String.format("<div class=\"characteristics-image\">%s</div>", characteristicsImage);
     }
 
     private String getPrefixHTML(String prefix) {
@@ -137,32 +145,27 @@ public class WordStudyService extends SPService {
 
     private String getIntroductionHTML(String intro) {
         if (intro == null || intro.isEmpty()) return "";
-        return """
-            <div class="introduction">%s</div>""".formatted(intro);
+        return String.format("<div class=\"introduction\">%s</div>", intro);
     }
 
     private String getFirstSampleHTML(String sample) {
         if (sample == null || sample.isEmpty()) return "";
-        return """
-            <div class="first-sample">%s</div>""".formatted(sample);
+        return String.format("<div class=\"first-sample\">%s</div>", sample);
     }
 
     private String getFirstExplainHTML(String explain) {
         if (explain == null || explain.isEmpty()) return "";
-        return """
-            <div class="first-explain">%s</div>""".formatted(explain);
+        return String.format("<div class=\"first-explain\">%s</div>", explain);
     }
 
     private String getSecondSampleHTML(String sample) {
         if (sample == null || sample.isEmpty()) return "";
-        return """
-            <div class="second-sample">%s</div>""".formatted(sample);
+        return String.format("<div class=\"second-sample\">%s</div>", sample);
     }
 
     private String getSecondExplainHTML(String explain) {
         if (explain == null || explain.isEmpty()) return "";
-        return """
-            <div class="second-explain">%s</div>""".formatted(explain);
+        return String.format("<div class=\"second-explain\">%s</div>", explain);
     }
 
     private String getWordJounalPromtHTML(String wordJounalPromt) {
@@ -186,7 +189,6 @@ public class WordStudyService extends SPService {
         // remove last number
         image = image.substring(0, image.length() - 1) + index;
 
-        return """
-            <img src="/cms/repository/cms/images2020/%s.jpg" style="width: 334px; height: 234px;" />""".formatted(image);
+        return String.format("<img src=\"/cms/repository/cms/images2020/%s.jpg\" style=\"width: 334px; height: 234px;\" />", image);
     }
 }

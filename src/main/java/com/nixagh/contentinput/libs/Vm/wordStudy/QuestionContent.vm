@@ -1,0 +1,21 @@
+<div class="question-questionStem question-questionStem-1-column">
+    <div class="question-stem-content">
+        ${inflectedFormsHTML}
+        ${characteristicsImageHTML}
+        ${prefixHTML}
+        ${rootOrBaseHTMl}
+        ${suffixHTML}
+        ${introductionHTML}
+        ${firstSampleHTML}
+        ${firstExplainHTML}
+        ${firstAltText}
+        ${secondSampleHTML}
+        ${secondExplainHTML}
+        ${secondAltText}
+        ${wordJounalPromtHTML}
+        ${leftImageHTML}
+        ${rightImageHTML}
+    </div>
+        <div class="question"><div cid="${cid}" ctype="View" qname="a${questionNumber}"></div>
+    </div>
+</div>

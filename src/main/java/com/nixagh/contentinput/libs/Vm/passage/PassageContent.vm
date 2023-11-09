@@ -1,0 +1,5 @@
+<div class="direction_section">
+    <div audio-source="/content/${productCode}/AudioPassages/${productCode}_ipA_U1_Choice_P1_Drivers.mp3" class="audio-inline" style="display: inline-flex; width: auto;"></div>
+    <div class="title">${title}</div>
+    ${body}
+</div>

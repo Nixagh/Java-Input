@@ -27,7 +27,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Entity
 @Table(name = "question")
-public class Question {
+public class QuestionEntity {
     /*"questionid","questionuid","questionxml","maxscore","correctanswer","passageid","resourceid","productid","questionnumber","questiontypeid","rendertype","labelschema","standards","scramble","rubric","hidequestionlabel","epilog","hint","linktoquestion","correctanswertexthtml","programtoc","title","action","problemsolution","rubricrules","word","rubricid","rubrictitle","hideoptionlabel","scrambleoption","writeonlines","originalitemid","webdok","correctasis","questionnumcssstyle","questionnumcssclass","createddate","modifieddate","algorithym","renderrule","definitionword","connotation","reportingrule","hidelabelrule","questionxmltemp","converttomc4print","rendertype4print","correctanswer4print","wordmeaning","labelschemacustom","xmlcontent2017","scoringformula","screenid","screenelementid","componentgradingrules","autoscorete","questionxmlprint","correctanswerprint","correctanswertexthtmlprint","correctanswer4printtext","collaboration","wordmapcontent","wordmapuri","feedback","questiontext","ans1","ans2","ans3","ans4","ans5","disabled","wordid","adaptivefeedback","adaptivequestionxml","pathwayset1","pathwayset2","settype","adaptiveanswercount","questionxml_backup","correctanswer_bk","correctanswertexthtml_bk"*/
     // help me gen all field
     @Id

@@ -60,6 +60,7 @@ public class RunProcess {
 
     private final Map<String, VWABaseService> processMap = new HashMap<>();
     private final Map<String, String> typeMap = new HashMap<>();
+
     public void init() {
         typeMap.put("GT", "Guided Tour");
         typeMap.put("SP", "Starting Point");
@@ -116,13 +117,14 @@ public class RunProcess {
     }
 
     private List<Tuple> getResourceCodes(Integer unit, String type) {
-        var query = entityManager.createNativeQuery("""
-            select r.resourcecode, r.resourceid , r.description , p.productid , r.adaptiveresourcetype
-            from resource r
-            join product p on p.productid =r.productid
-            join programtoc p2 on p2.programtocid = r.programtocid
-            where p.code = '%s' and p2."name" = 'Unit %d' and r.adaptiveresourcetype = '%s'
-            """.formatted(this.getProductCode(), unit, type), Tuple.class);
+        var query = entityManager.createNativeQuery(String.format("" +
+            "select r.resourcecode, r.resourceid , r.description , p.productid , r.adaptiveresourcetype " +
+            "from resource r " +
+            "join product p on p.productid =r.productid " +
+            "join programtoc p2 on p2.programtocid = r.programtocid " +
+            "where p.code = '%s' " +
+            "and p2.\"name\" = 'Unit %d' " +
+            "and r.adaptiveresourcetype = '%s' ", this.getProductCode(), unit, type), Tuple.class);
 
         return query.getResultList();
     }
@@ -197,6 +199,7 @@ public class RunProcess {
         } catch (JsonProcessingException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println("\n");
     }
 
     public static void main(String[] args) {
@@ -208,7 +211,7 @@ public class RunProcess {
 
         StringBuilder sb = new StringBuilder();
 
-        while(matcher.find()) {
+        while (matcher.find()) {
             var str2 = "sdad";
             var word = matcher.group("word");
             System.out.println(matcher);

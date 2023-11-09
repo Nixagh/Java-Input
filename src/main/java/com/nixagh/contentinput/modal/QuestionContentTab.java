@@ -16,8 +16,6 @@ public class QuestionContentTab {
     private String correctAnswerTextHtml;
 
     public void setCorrectAnswer(String cid, String value, String type, String subtype) {
-        this.correctAnswer = """
-                {"comps":[{"id":"%s","value":"%s","type":"%s"%s}]}
-                """.formatted(cid, value, type, subtype != null ? ",\"subtype\":\"" + subtype + "\"" : "");
+        this.correctAnswer = String.format("{\"comps\":[{\"id\":\"%s\",\"value\":\"%s\",\"type\":\"%s\"%s}]}", cid, value, type, subtype != null ? ",\"subtype\":\"" + subtype + "\"" : "");
     }
 }

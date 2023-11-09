@@ -7,6 +7,7 @@ import com.nixagh.contentinput.repository.QuestionRepository;
 import com.nixagh.contentinput.util.ExcelReader;
 import javax.persistence.EntityManager;
 
+import java.util.Map;
 import java.util.stream.IntStream;
 
 /**
@@ -42,15 +43,14 @@ public class VisualService extends SPService {
 
     private String buildContent(DefinitionSheet definitionSheet, int questionNumber) {
         var dataSources = this.getDataSources(definitionSheet.getInstructionalVideoPickupCode(), definitionSheet.getWord());
-        return """
-            <div class="question-questionStem question-questionStem-1-column">
-                  <div class="question-stem-content">
-                      <div class="question">
-                        <div cid="%s" ctype="Video" data-source="%s" qname="a%d"></div>
-                      </div>
-                  </div>
-            </div>
-            """.formatted(this.getCID(questionNumber), dataSources, questionNumber);
+
+        Map<String, Object> map = Map.of(
+            "questionNumber", questionNumber,
+            "dataSources", dataSources,
+            "cid", this.getCID(questionNumber)
+        );
+
+        return this.addByVM("src/main/java/com/nixagh/contentinput/libs/Vm/visual/QuestionContent.vm", map);
     }
 
     private String getDataSources(String instructionalVideoPickupCode, String word) {
@@ -58,6 +58,6 @@ public class VisualService extends SPService {
             return "/content/802906/007744939/VW_unavailablevideo.mp4";
         }
 
-        return "/content/802906/%s/%s.mp4".formatted(this.getResourceCode(), word);
+        return String.format("/content/802906/%s/%s.mp4", this.getResourceCode(), word);
     }
 }

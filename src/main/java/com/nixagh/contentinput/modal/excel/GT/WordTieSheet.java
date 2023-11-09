@@ -37,8 +37,7 @@ public class WordTieSheet {
     @ExcelCellName("Correct Answers")
     private String correctAnswers;
     @ExcelCellName("Correct emoji with feedback phrases randomly selected.")
-    private String correctEmoji = """
-        ["Way to go!","Great job!","You did it!","Terrific!"]""";
+    private String correctEmoji = "[\"Way to go!\",\"Great job!\",\"You did it!\",\"Terrific!\"]";
 
     @ExcelCellName("Incorrect Feedback 1")
     private String incorrectFeedback1;
@@ -49,14 +48,10 @@ public class WordTieSheet {
     @ExcelCellName("Final incorrect feedback for students who had a second try.")
     private String incorrectFeedback4;
 
-    private String incorrectEmoji1 = """
-        ["Nice try!"]""";
-    private String incorrectEmoji2 = """
-        ["You can do this!","Keep practicing.","Keep trying.","Nice try!","Try another way."]""";
-    private String incorrectEmoji3 = """
-        ["You can do this!","Keep practicing.","Keep trying.","Nice try!","Try another way."]""";
-    private String incorrectEmoji4 = """
-        ["Nice try!"]""";
+    private String incorrectEmoji1 = "[\"Nice try!\"]";
+    private String incorrectEmoji2 = "[\"You can do this!\",\"Keep practicing.\",\"Keep trying.\",\"Nice try!\",\"Try another way.\"]";
+    private String incorrectEmoji3 = "[\"You can do this!\",\"Keep practicing.\",\"Keep trying.\",\"Nice try!\",\"Try another way.\"]";
+    private String incorrectEmoji4 = "[\"Nice try!\"]";
     @ExcelCellName("Standard")
     private String standard;
     @ExcelCellName("Points")

@@ -20,7 +20,7 @@ import java.math.BigInteger;
 @Setter
 @Entity
 @Table(name = "passage")
-public class Passage {
+public class PassageEntity {
     // passageid, passageuid, passagecontent, "name", resourceid, productid, scramble, passagenumber, passageaudio, originalitemid, adjacentpassagename, "section", choicepassage, passagesummary, directionline
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
