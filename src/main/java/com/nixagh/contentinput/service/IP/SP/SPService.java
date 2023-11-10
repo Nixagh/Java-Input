@@ -12,6 +12,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -39,6 +40,7 @@ public class SPService extends VWABaseService {
     public void init() {
         super.init();
         this.definitionSheets = this.excelReader.getExcelFile(this.path, this.definitionSheetName, DefinitionSheet.class);
+        this.definitionSheets.sort(Comparator.comparing(DefinitionSheet::getWordID));
         this.visualSheets = this.excelReader.getExcelFile(this.path, this.visualSheetName, VisualSheet.class);
         this.wordStudySheets = this.excelReader.getExcelFile(this.path, this.wordStudySheetName, WordStudySheet.class);
     }
