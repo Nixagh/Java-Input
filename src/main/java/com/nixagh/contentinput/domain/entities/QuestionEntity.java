@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -66,17 +67,18 @@ public class QuestionEntity {
     private String standards;
 
     @Column(name = "scramble")
-    private boolean scramble;
+    private Boolean scramble;
 
     @Column(name = "hidequestionlabel")
-    private boolean hidequestionlabel = false;
+    private Boolean hidequestionlabel = false;
 
 
     @Column(name = "linktoquestion")
     private Integer linktoquestion;
 
     @Column(name = "correctanswertexthtml")
-    private String correctanswertexthtml;;
+    private String correctanswertexthtml;
+    ;
 
     @Column(name = "programtoc")
     private Integer programtocid;
@@ -97,13 +99,22 @@ public class QuestionEntity {
     private String rubrictitle = "";
 
     @Column(name = "hideoptionlabel")
-    private boolean hideoptionlabel = false;
+    private Boolean hideoptionlabel = false;
+
+    @Column(name = "writeonlines")
+    private String writeonlines;
 
     @Column(name = "scrambleoption")
-    private boolean scrambleoption = false;
+    private Boolean scrambleoption = false;
 
     @Column(name = "originalitemid")
-    private Integer originalitemid ;
+    private Integer originalitemid;
+
+    @Column(name = "webdok")
+    private String webdok;
+
+    @Column(name = "correctasis")
+    private Boolean correctasis = false;
 
     @Column(name = "questionnumcssstyle")
     private String questionnumcssstyle = "";
@@ -133,12 +144,15 @@ public class QuestionEntity {
     private String reportingrule;
 
     @Column(name = "hidelabelrule")
-    private boolean hidelabelrule;
+    private Boolean hidelabelrule;
 
     @Column(name = "questionxmltemp")
     private String questionxmltemp;
 
-    @Column(name = "correctanswerprint")
+    @Column(name = "converttomc4print")
+    private Boolean converttomc4print = false;
+
+    @Column(name = "rendertype4print")
     private String rendertype4print = "D";
 
     @Column(name = "correctanswer4printtext")
@@ -146,6 +160,39 @@ public class QuestionEntity {
 
     @Column(name = "correctanswer4print")
     private String correctanswer4print;
+
+    @Column(name = "wordmeaning")
+    private String wordmeaning;
+
+    @Column(name = "labelschemacustom")
+    private String labelschemacustom;
+
+    @Column(name = "xmlcontent2017")
+    private String xmlcontent2017;
+
+    @Column(name = "scoringformula")
+    private String scoringformula;
+
+    @Column(name = "screenid")
+    private Long screenid;
+
+    @Column(name = "screenelementid")
+    private Long screenelementid;
+
+    @Column(name = "componentgradingrules")
+    private String componentgradingrules;
+
+    @Column(name = "autoscorete")
+    private Boolean autoscorete = false;
+
+    @Column(name = "questionxmlprint")
+    private String questionxmlprint;
+
+    @Column(name = "correctanswerprint")
+    private String correctanswerprint;
+
+    @Column(name = "correctanswertexthtmlprint")
+    private String correctanswertexthtmlprint;
 
     @Column(name = "collaboration")
     private String collaboration;
@@ -178,7 +225,7 @@ public class QuestionEntity {
     private String ans5;
 
     @Column(name = "disabled")
-    private boolean disabled;
+    private Boolean disabled;
 
     @Column(name = "wordid")
     private String wordid;
@@ -209,8 +256,4 @@ public class QuestionEntity {
 
     @Column(name = "correctanswertexthtml_bk")
     private String correctanswertexthtml_bk;
-
-    @Column(name = "autoscorete")
-    private Boolean autoscorete = false;
-
 }
