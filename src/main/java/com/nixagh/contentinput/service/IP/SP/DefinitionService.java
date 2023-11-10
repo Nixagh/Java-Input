@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
 @Getter
 @Setter
 public class DefinitionService extends SPService {
-    private String questionContentVMPath = "src/main/java/com/nixagh/contentinput/libs/Vm/definition/QuestionContent.vm";
+    private String questionContentVMPath = "src/main/java/com/nixagh/contentinput/libs/Vm/IP/SP/definition/QuestionContent.vm";
 
     public Integer getAdaptiveAnswerCount() {
         return VWAEnums.Definitions.getAdaptiveAnswerCount();

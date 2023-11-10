@@ -10,17 +10,19 @@ import com.nixagh.contentinput.domain.model.excel.WordListSheet;
 import com.nixagh.contentinput.domain.repository.PassageRepository;
 import com.nixagh.contentinput.domain.repository.QuestionRepository;
 import com.nixagh.contentinput.util.ExcelReader;
+
 import javax.persistence.EntityManager;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.StringWriter;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,9 +63,11 @@ public class VWABaseService {
     protected final QuestionRepository questionRepository;
     protected final PassageRepository passageRepository;
     protected final EntityManager entityManager;
-//    protected final VelocityEngine velocityEngine;
+    //    protected final VelocityEngine velocityEngine;
     protected final VelocityEngine velocityEngine = new VelocityEngine();
 
+    @Value("${isSave:false}")
+    private Boolean isSave;
 
     public VWABaseService(ExcelReader excelReader, QuestionRepository questionRepository, PassageRepository passageRepository, EntityManager entityManager) {
         this.excelReader = excelReader;
@@ -150,19 +154,25 @@ public class VWABaseService {
         return "Resource: " + this.getResourceCode() + " with Error: " + message;
     }
 
-    public void createQuestion(){};
+    public void createQuestion() {
+    }
 
     public void createQuestion(QuestionTab questionTab, PassageTab passageTab, QuestionContentTab questionContentTab, String feedback) {
-        var question = new QuestionEntity();
-        question.setQuestionuid(String.valueOf(UUID.randomUUID()));
-        question.setProductid(this.getProductId());
-        question.setResourceid(this.getResourceId());
+        QuestionEntity question = this.questionRepository.getQuestionEntityByQuestionNumberAndResourceId(questionTab.getQuestionNumber(), this.getResourceId())
+            .orElse(null);
+
+        if (question == null) {
+            question = new QuestionEntity();
+            question.setQuestionuid(String.valueOf(UUID.randomUUID()));
+            question.setProductid(this.getProductId());
+            question.setResourceid(this.getResourceId());
+        }
 
         // question tab
         this.setQuestionTab(question, questionTab);
 
         // passage tab
-        if (this.getSetPassage()) this.setPassageTab(question, passageTab);
+        if (this.getSetPassage() && question.getPassageid() == null) this.setPassageTab(question, passageTab);
 
         // question content tab
         this.setQuestionContentTab(question, questionContentTab);
@@ -173,9 +183,13 @@ public class VWABaseService {
         this.questions.add(question);
 
         // save question
-//        this.questionRepository.save(question);
-        System.out.println(question);
-        this.logs.add("Create question success: " + question.getQuestionuid());
+        try {
+            if (isSave) this.questionRepository.save(question);
+            this.logs.add("Create question success: " + question.getQuestionuid());
+        } catch (Exception e) {
+            this.addError("Create question fail: " + question.getQuestionnumber(), e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public <T> void createQuestion(String wordId, String standard, String content, String correctAnswer, T sheet, int index) {
@@ -269,8 +283,8 @@ public class VWABaseService {
                 passage.setPassageSummary(passageTab.getSummary());
                 passage.setDirectionLine(passageTab.getDirectionLine());
 
-//                var result = this.passageRepository.save(passage);
-//                question.setPassageid(result.getPassageId());
+                var result = this.passageRepository.save(passage);
+                question.setPassageid(result.getPassageId());
             }
         );
     }
@@ -363,7 +377,7 @@ public class VWABaseService {
         var regex = "<b|((word|)?<id>\\d+)>(?<word>.+?)<(/|)(b|(word|)\\d+)>";
         var matcher = this.getMatcher(regex, feedback);
 
-        if(!matcher.find()) return feedback;
+        if (!matcher.find()) return feedback;
 
         var wordId = matcher.group("id");
         var word = matcher.group("word");
@@ -379,7 +393,7 @@ public class VWABaseService {
         var regex = "<title>(.+?)</title>";
         var matcher = this.getMatcher(regex, content);
 
-        if(matcher.find()) {
+        if (matcher.find()) {
             content = content.replaceAll(regex, "");
         }
 

@@ -1,7 +1,7 @@
 <div adaptivetype="${setType}" class="question-questionStem question-questionStem-1-column">
   <div class="question-stem-content">
     <div class="question">${item}
-      <div cid="${cid}" ctype="MultipleChoice" layout="Vertical" qname="a${questionNumber}" subtype="MC" total="${numberOfAnsver}">
+      <div cid="${cid}" ctype="MultipleChoice" layout="Vertical" qname="a${questionNumber}" subtype="MC" total="${numberOfAnswer}">
           ${options}
       </div>
     </div>

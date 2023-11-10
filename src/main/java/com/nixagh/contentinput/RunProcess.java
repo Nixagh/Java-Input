@@ -159,11 +159,11 @@ public class RunProcess {
 
     private void runResourceCode(Tuple resourceCode, String path, int unitNumber) {
         var description = resourceCode.get("description", String.class);
-        log.info("Run process for resource code: {}, description: {}", resourceCode.get("resourcecode", String.class), description);
-        var type = resourceCode.get("adaptiveresourcetype", String.class);
-        var productId = resourceCode.get("productid", Long.class);
-        var resourceId = resourceCode.get("resourceid", Long.class);
-        var _resourceCode = resourceCode.get("resourcecode", String.class);
+        var type = resourceCode.get("adaptiveResourceType", String.class);
+        var productId = resourceCode.get("productId", Long.class);
+        var resourceId = resourceCode.get("resourceId", Long.class);
+        var _resourceCode = resourceCode.get("resourceCode", String.class);
+        log.info("Run process for resource code: {}, description: {}", _resourceCode, description);
 
         var key = description + "-" + type;
 
@@ -186,11 +186,6 @@ public class RunProcess {
         process.createQuestion();
 
         process.createLog();
-        try {
-            System.out.println(objectMapper.writeValueAsString(process.getQuestions()));
-        } catch (JsonProcessingException e) {
-            System.out.println(e.getMessage());
-        }
         System.out.println("\n");
     }
 

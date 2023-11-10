@@ -31,9 +31,9 @@ public class PassageService extends VWABaseService {
     private final String passageSheetName = "OnLevelPsg";
     private Long[] currentPassageIds = new Long[1];
 
-    private String questionContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/passage/QuestionContent.vm";
-    private String passageContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/passage/PassageContent.vm";
-    private String passageSummaryVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/passage/PassageSummary.vm";
+    private String questionContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/IP/OYO/passage/QuestionContent.vm";
+    private String passageContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/IP/OYO/passage/PassageContent.vm";
+    private String passageSummaryVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/IP/OYO/passage/PassageSummary.vm";
 
     public PassageService(ExcelReader excelReader, QuestionRepository questionRepository, PassageRepository passageRepository, EntityManager entityManager) {
         super(excelReader, questionRepository, passageRepository, entityManager);
