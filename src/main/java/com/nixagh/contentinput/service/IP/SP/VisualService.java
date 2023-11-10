@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
  * @since 11/7/2023 at 8:29 AM
  */
 public class VisualService extends SPService {
-    private String questionContentVMPath = "src/main/java/com/nixagh/contentinput/libs/Vm/visual/QuestionContent.vm";
+    private String questionContentVMPath = "src/main/java/com/nixagh/contentinput/libs/Vm/IP/SP/visual/QuestionContent.vm";
 
     public VisualService(ExcelReader excelReader, QuestionRepository questionRepository, PassageRepository passageRepository, EntityManager entityManager) {
         super(excelReader, questionRepository, passageRepository, entityManager);

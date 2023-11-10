@@ -29,7 +29,7 @@ public class WordTieService extends VWABaseService {
     private String wordTieSheetName = "WordTies";
     private Long[] currentPassageIds = new Long[1];
 
-    private String QuestionContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/wordTies/WordTieQuestionContent.vm";
+    private String QuestionContentVMpath = "src/main/java/com/nixagh/contentinput/libs/Vm/IP/GT/wordTies/WordTieQuestionContent.vm";
 
     public WordTieService(ExcelReader excelReader, QuestionRepository questionRepository, PassageRepository passageRepository, EntityManager entityManager) {
         super(excelReader, questionRepository, passageRepository, entityManager);

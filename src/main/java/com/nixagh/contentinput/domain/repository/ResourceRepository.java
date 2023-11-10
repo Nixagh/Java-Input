@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface ResourceRepository extends JpaRepository<ResourceEntity, Long> {
     @Query(value =
-        "select r.resourceCode, r.resourceId , r.description , p.productid , r.adaptiveResourceType " +
+        "select r.resourceCode as resourceCode, r.resourceId as resourceId, r.description as description, p.productid as productId, r.adaptiveResourceType as adaptiveResourceType " +
         "from ResourceEntity r " +
         "join ProductEntity p on p.productid = r.productId " +
         "join ProgramTOCEntity p2 on p2.programtocid = r.programTocId " +

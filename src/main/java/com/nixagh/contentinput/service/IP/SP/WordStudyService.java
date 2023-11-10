@@ -21,7 +21,7 @@ import java.util.stream.IntStream;
 @Getter
 @Setter
 public class WordStudyService extends SPService {
-    private String questionContentVMPath = "src/main/java/com/nixagh/contentinput/libs/Vm/wordStudy/QuestionContent.vm";
+    private String questionContentVMPath = "src/main/java/com/nixagh/contentinput/libs/Vm/IP/SP/wordStudy/QuestionContent.vm";
 
     public Integer getAdaptiveAnswerCount() {
         return VWAEnums.WordStudy.getAdaptiveAnswerCount();
